@@ -32,15 +32,19 @@ pushing.
 
 ```
 index.js                          SDK wiring only: handlers registered before connect()
-src/devices/index.js              registry of the device blueprints + dispatch helpers
-src/devices/<type>.js             one device type per file (buildDevice, onPoll, onSetValue...)
-src/scenes.js                     scene action handlers (manifest `scene_actions`)
-src/widgets.js                    dashboard widget handlers (manifest `widgets`)
+src/app.js                        the integration: timer, reads, triggers, states, handlers
+src/nyiso.js                      the NYISO files: URLs, CSV, New York time, mix and CO₂
+src/http.js                       GET with timeout and honest User-Agent
+src/devices.js                    the grid and zone devices, their states
+src/triggers.js                   threshold crossings (once per crossing, hysteresis)
+src/widgets.js                    the "grid" dashboard widget
+src/zones.js                      the eleven NYISO load zones, keyed by PTID
 src/config.js                     DEFAULT_CONFIG (mirrors the manifest defaults) + normalization
-src/weather.js                    example driver (Open-Meteo)
+src/i18n.js                       every text, en/fr/de/es
+src/store.js, src/issues.js       /data persistence, logged-once failures
 gladys-assistant-integration.json manifest: name, config_schema, actions, image...
-docs/en.md, docs/fr.md            user documentation, re-hosted by Gladys (mandatory)
-test/                             node --test, against the SDK's fake Gladys (integration-sdk/testing)
+docs/{en,fr,de,es}.md             user documentation, re-hosted by Gladys
+test/                             node --test, against the SDK's fake Gladys and real NYISO files
 .github/scripts/release.mjs       release helpers (manifest bump, changelog), tested in test/
 ```
 
@@ -251,3 +255,21 @@ long, et sur un « Sie »/« Ihr… » de politesse en allemand. Le store exige 
 - Docs `en`, `fr`, `de`, `es` avec les mêmes sections.
 - Chauffe, ouverture, sécurité : ne rien rendre pilotable « comme un thermostat » ou par un assistant
   vocal quand une erreur serait dangereuse (leçon d'OctoPrint).
+
+## NYISO (cette intégration)
+
+- Fichiers publics sans clé de `https://mis.nyiso.com/public/` : `realtime/realtime_zone_lbmp.csv`
+  (prix de l'intervalle courant, 1 Ko, **sans colonne de fuseau**), `csv/rtfuelmix/AAAAMMJJrtfuelmix.csv`
+  et `csv/pal/AAAAMMJJpal.csv` (journaliers, colonne `EST`/`EDT` par ligne, l'heure du changement d'heure
+  apparaît deux fois). Le fichier journalier `realtime_zone.csv` contient aussi des **lignes futures**
+  (prévisions RTC au quart d'heure) : ne jamais prendre sa dernière ligne.
+- Le fichier du jour (date de New York) n'existe pas encore juste après minuit (404) : repli sur la
+  veille. Les fichiers de prix portent aussi des proxys externes (H Q, NPX, O H, PJM) : ignorés.
+- Zones identifiées par leur **PTID** (61752 à 61762), jamais par le nom : c'est l'identifiant
+  externe des appareils et la valeur des options du manifeste.
+- Vérifié le 7/11/2026 : ISO-NE (CSV d'ISO Express en 403 sans session de navigateur, seul le JSON
+  interne du site répond), MISO (« no data »), SPP (muet), PJM (clé) : écartés, la règle étant de
+  ne pas imiter un navigateur. CAISO est couvert par `LM1LC3N7/gladys-caiso`.
+- Déclencheurs à seuil : les seuils sont dans la configuration (les filtres de scène ne font
+  qu'égalité) ; une fois par passage, réarmement avec une marge, état gardé sous `/data` avec le
+  seuil.

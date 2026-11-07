@@ -30,6 +30,11 @@ Gladys before reporting a problem.
 
 In scope: the code of this repository and the Docker image it publishes.
 
+The integration needs no account, key or secret: it only reads the public
+files of NYISO (`https://mis.nyiso.com/public/`), over HTTPS. Under `/data` it
+keeps a single file, the trigger thresholds already crossed. It opens no port
+and reaches nothing on the local network.
+
 Out of scope: Gladys Assistant itself (see its
 [security policy](https://github.com/GladysAssistant/Gladys/security/policy)),
-and the third-party services and devices the integration talks to.
+and NYISO's services.
