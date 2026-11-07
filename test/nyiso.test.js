@@ -147,3 +147,19 @@ test('a failing source rejects with its HTTP status, honestly named', async () =
     /unreachable \(ECONNREFUSED\)/,
   );
 });
+
+test("a server error on today's file is an error, not yesterday's figures", async () => {
+  const nyiso = createFakeNyiso();
+  nyiso.load = () => csv(500, 'oops');
+  await assert.rejects(fetchLoad(nyiso.fetch, START), /NYISO load answered HTTP 500/);
+  assert.equal(nyiso.calls.length, 1);
+});
+
+test('in the fall-back hour, a stale stamp is not read as a future one', () => {
+  // 01:45 EDT (05:45 UTC): a 01:00 stamp is 01:00 EDT, 45 minutes old, not
+  // 01:00 EST, 15 minutes ahead.
+  const now = Date.UTC(2026, 10, 1, 5, 45);
+  assert.equal(parseEasternTime('11/01/2026 01:00:00', { now }), Date.UTC(2026, 10, 1, 5, 0));
+  // The current interval, stamped a few minutes ahead, stays the current one.
+  assert.equal(parseEasternTime('11/01/2026 01:50:00', { now }), Date.UTC(2026, 10, 1, 5, 50));
+});

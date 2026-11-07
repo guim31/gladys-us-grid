@@ -142,7 +142,8 @@ export function registerHandlers(
       fetchFuelMix(fetchImpl, now()),
       fetchLoad(fetchImpl, now()),
     ]);
-    if (mixRead.status === 'fulfilled') {
+    // Never replace a reading with an older one.
+    if (mixRead.status === 'fulfilled' && !(mix && mixRead.value.at < mix.at)) {
       const changed = mixRead.value.at !== mix?.at;
       mix = mixRead.value;
       if (changed) {
@@ -155,7 +156,7 @@ export function registerHandlers(
         await fireLowCarbonTrigger(mix);
       }
     }
-    if (loadRead.status === 'fulfilled') {
+    if (loadRead.status === 'fulfilled' && !(load && loadRead.value.at < load.at)) {
       load = loadRead.value;
       logger.debug(`NYISO load ${load.at}: ${Math.round(load.totalMw)} MW`);
     }
@@ -175,7 +176,7 @@ export function registerHandlers(
   async function sendEvent(key, data) {
     try {
       await gladys.publishSceneEvent(key, data);
-      logger.info(`Trigger ${key}: ${JSON.stringify(data)}`);
+      logger.debug(`Trigger ${key}: ${JSON.stringify(data)}`);
     } catch (err) {
       gladysIssues.fail('scene-event', `Trigger ${key} not sent to Gladys: ${err.message}`);
     }
@@ -373,14 +374,15 @@ export function registerHandlers(
 
   gladys.onAction(ACTION_KEY, async () => {
     logger.info('Action: test the connection to NYISO');
-    const pricesOk = await refreshPrices();
-    const mixOk = await refreshMix();
+    const [pricesOk, mixOk] = await Promise.all([refreshPrices(), refreshMix()]);
     await publishStates();
     await reportStatus();
     if (!pricesOk) {
       throw new Error(pick(TEXT.pricesDown, config.language));
     }
-    const ptid = config.zones[0] ?? DEFAULT_ZONE;
+    const ptid = [...config.zones, DEFAULT_ZONE, ...Object.keys(prices.prices)].find((id) =>
+      Number.isFinite(prices.prices[id]),
+    );
     const time = new Date(prices.at).toLocaleTimeString(config.language, {
       hour: '2-digit',
       minute: '2-digit',

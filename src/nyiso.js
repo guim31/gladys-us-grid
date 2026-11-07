@@ -28,6 +28,8 @@ const TIME_ZONE = 'America/New_York';
 const OFFSETS_MS = { EST: -5 * 3_600_000, EDT: -4 * 3_600_000 };
 /** A row stamped later than this after now is a forecast, not a reading. */
 const FUTURE_TOLERANCE_MS = 2 * 60 * 1000;
+/** The current price file is stamped with the end of its interval: up to ~5 minutes ahead. */
+const PRICE_AHEAD_MS = 10 * 60 * 1000;
 
 /**
  * NYISO fuel category → key, with the lifecycle emission factor used for the
@@ -101,8 +103,11 @@ export function parseEasternTime(stamp, { zone, now } = {}) {
     return wall - OFFSETS_MS.EST;
   }
   const reference = now ?? candidates[0];
-  candidates.sort((a, b) => Math.abs(a - reference) - Math.abs(b - reference));
-  return candidates[0];
+  // A reading in the future is a wrong one: the past ones first.
+  const past = candidates.filter((at) => at <= reference + PRICE_AHEAD_MS);
+  const pool = past.length > 0 ? past : candidates;
+  pool.sort((a, b) => Math.abs(a - reference) - Math.abs(b - reference));
+  return pool[0];
 }
 
 /** The date in New York, "YYYYMMDD", `daysBack` days before the instant. */
@@ -257,7 +262,6 @@ export async function fetchPrices(fetchImpl, now) {
  * complete interval yet (just after midnight).
  */
 async function fetchDaily(fetchImpl, now, urlOf, parse, what) {
-  let firstError = null;
   for (const daysBack of [0, 1]) {
     try {
       const parsed = parse(
@@ -268,11 +272,14 @@ async function fetchDaily(fetchImpl, now, urlOf, parse, what) {
         return parsed;
       }
     } catch (err) {
-      // A 404 of today's file just after midnight: yesterday's is tried.
-      firstError ??= err;
+      // Only a missing file (today's, just after midnight) sends to yesterday's:
+      // a server error must not pass an old interval off as a fresh read.
+      if (daysBack > 0 || err.status !== 404) {
+        throw err;
+      }
     }
   }
-  throw firstError ?? new Error(`${what}: no complete interval`);
+  throw new Error(`${what}: no complete interval`);
 }
 
 export const fetchFuelMix = (fetchImpl, now) =>
