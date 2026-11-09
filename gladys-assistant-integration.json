@@ -1,177 +1,1045 @@
 {
   "manifest_version": 1,
   "type": "device",
-  "name": "Demo Devices Template",
+  "name": "NYISO New York Grid",
   "description": {
-    "en": "Starter template showing sensors, a switch, a dimmable light and a smart plug.",
-    "fr": "Template de démarrage : capteurs, interrupteur, lampe variable et prise connectée."
+    "en": "New York power grid live: real-time price by zone, load, fuel mix, low-carbon share.",
+    "fr": "Réseau de New York en direct : prix temps réel par zone, consommation, mix, part bas carbone.",
+    "de": "Stromnetz New York live: Echtzeitpreis pro Zone, Verbrauch, Strommix, CO₂-armer Anteil.",
+    "es": "Red eléctrica de Nueva York en directo: precio por zona, consumo, mix, proporción baja en carbono."
   },
   "version": "1.0.0",
-  "docker_image": "ghcr.io/gladysassistant/integration-template-js:1.0.0",
-  "gladys_version": ">=5.1.0",
-  "cover_image": "https://raw.githubusercontent.com/GladysAssistant/integration-template-js/master/cover.png",
-  "categories": ["lighting", "security", "environment"],
-  "transports": ["local", "cloud"],
+  "docker_image": "ghcr.io/guim31/gladys-us-grid:1.0.0",
+  "gladys_version": ">=5.3.0",
+  "cover_image": "https://raw.githubusercontent.com/guim31/gladys-us-grid/main/cover.png",
+  "categories": ["energy"],
+  "countries": ["US"],
+  "transports": ["cloud"],
   "config_schema": [
     {
       "key": "intro",
       "type": "section",
-      "label": { "en": "Getting started", "fr": "Pour commencer" },
+      "label": {
+        "en": "Open data from NYISO",
+        "fr": "Les données ouvertes de NYISO",
+        "de": "Offene Daten von NYISO",
+        "es": "Datos abiertos de NYISO"
+      },
       "description": {
-        "en": "The demo weather station reads real data from the free Open-Meteo API: pick the coordinates to observe. No account, no API key.",
-        "fr": "La station météo de démonstration lit de vraies données via l'API gratuite Open-Meteo : choisissez les coordonnées à observer. Pas de compte, pas de clé d'API."
+        "en": "Public files of the New York grid operator, no account needed. Prices are wholesale, not your electricity rate. California: see the CAISO integration. Not affiliated with NYISO.",
+        "fr": "Fichiers publics de l'opérateur du réseau de New York, sans compte. Les prix sont des prix de gros, pas votre tarif. Californie : voir l'intégration CAISO. Sans lien avec NYISO.",
+        "de": "Öffentliche Dateien des Netzbetreibers von New York, ohne Konto. Die Preise sind Großhandelspreise, nicht dein Stromtarif. Kalifornien: siehe die CAISO-Integration. Nicht mit NYISO verbunden.",
+        "es": "Archivos públicos del operador de la red de Nueva York, sin cuenta. Los precios son mayoristas, no su tarifa. California: vea la integración CAISO. Sin relación con NYISO."
       },
       "links": [
         {
-          "url": "https://open-meteo.com/en/docs",
-          "label": { "en": "Open-Meteo documentation", "fr": "Documentation Open-Meteo" }
+          "url": "https://www.nyiso.com/real-time-dashboard",
+          "label": {
+            "en": "NYISO real-time dashboard",
+            "fr": "Tableau de bord temps réel de NYISO",
+            "de": "Echtzeit-Dashboard von NYISO",
+            "es": "Panel en tiempo real de NYISO"
+          }
+        },
+        {
+          "url": "https://github.com/LM1LC3N7/gladys-caiso",
+          "label": {
+            "en": "CAISO integration (California)",
+            "fr": "Intégration CAISO (Californie)",
+            "de": "CAISO-Integration (Kalifornien)",
+            "es": "Integración CAISO (California)"
+          }
         }
       ]
     },
     {
-      "key": "latitude",
-      "type": "number",
-      "label": { "en": "Latitude", "fr": "Latitude" },
-      "description": {
-        "en": "Latitude used for the demo weather sensor.",
-        "fr": "Latitude utilisée par le capteur météo de démonstration."
+      "key": "zones",
+      "type": "multi_select",
+      "label": {
+        "en": "Price zones to follow",
+        "fr": "Zones de prix à suivre",
+        "de": "Preiszonen",
+        "es": "Zonas de precio a seguir"
       },
-      "placeholder": { "en": "e.g. 48.8566", "fr": "ex. 48.8566" },
-      "required": true,
-      "default": 48.8566,
-      "min": -90,
-      "max": 90
-    },
-    {
-      "key": "longitude",
-      "type": "number",
-      "label": { "en": "Longitude", "fr": "Longitude" },
       "description": {
-        "en": "Longitude used for the demo weather sensor.",
-        "fr": "Longitude utilisée par le capteur météo de démonstration."
+        "en": "One device per zone: real-time price and load. The price triggers watch these zones.",
+        "fr": "Un appareil par zone : prix temps réel et consommation. Les déclencheurs de prix surveillent ces zones.",
+        "de": "Ein Gerät pro Zone: Echtzeitpreis und Verbrauch. Die Preis-Auslöser beobachten diese Zonen.",
+        "es": "Un dispositivo por zona: precio en tiempo real y consumo. Los disparadores de precio vigilan estas zonas."
       },
-      "placeholder": { "en": "e.g. 2.3522", "fr": "ex. 2.3522" },
-      "required": true,
-      "default": 2.3522,
-      "min": -180,
-      "max": 180
-    },
-    {
-      "key": "unit",
-      "type": "select",
-      "label": { "en": "Temperature unit", "fr": "Unité de température" },
       "required": false,
-      "default": "celsius",
       "options": [
-        { "value": "celsius", "label": { "en": "Celsius", "fr": "Celsius" } },
-        { "value": "fahrenheit", "label": { "en": "Fahrenheit", "fr": "Fahrenheit" } }
+        {
+          "value": "61752",
+          "label": {
+            "en": "West (A)",
+            "fr": "West (A)",
+            "de": "West (A)",
+            "es": "West (A)"
+          }
+        },
+        {
+          "value": "61753",
+          "label": {
+            "en": "Genesee (B)",
+            "fr": "Genesee (B)",
+            "de": "Genesee (B)",
+            "es": "Genesee (B)"
+          }
+        },
+        {
+          "value": "61754",
+          "label": {
+            "en": "Central (C)",
+            "fr": "Central (C)",
+            "de": "Central (C)",
+            "es": "Central (C)"
+          }
+        },
+        {
+          "value": "61755",
+          "label": {
+            "en": "North (D)",
+            "fr": "North (D)",
+            "de": "North (D)",
+            "es": "North (D)"
+          }
+        },
+        {
+          "value": "61756",
+          "label": {
+            "en": "Mohawk Valley (E)",
+            "fr": "Mohawk Valley (E)",
+            "de": "Mohawk Valley (E)",
+            "es": "Mohawk Valley (E)"
+          }
+        },
+        {
+          "value": "61757",
+          "label": {
+            "en": "Capital (F)",
+            "fr": "Capital (F)",
+            "de": "Capital (F)",
+            "es": "Capital (F)"
+          }
+        },
+        {
+          "value": "61758",
+          "label": {
+            "en": "Hudson Valley (G)",
+            "fr": "Hudson Valley (G)",
+            "de": "Hudson Valley (G)",
+            "es": "Hudson Valley (G)"
+          }
+        },
+        {
+          "value": "61759",
+          "label": {
+            "en": "Millwood (H)",
+            "fr": "Millwood (H)",
+            "de": "Millwood (H)",
+            "es": "Millwood (H)"
+          }
+        },
+        {
+          "value": "61760",
+          "label": {
+            "en": "Dunwoodie (I)",
+            "fr": "Dunwoodie (I)",
+            "de": "Dunwoodie (I)",
+            "es": "Dunwoodie (I)"
+          }
+        },
+        {
+          "value": "61761",
+          "label": {
+            "en": "New York City (J)",
+            "fr": "New York City (J)",
+            "de": "New York City (J)",
+            "es": "New York City (J)"
+          }
+        },
+        {
+          "value": "61762",
+          "label": {
+            "en": "Long Island (K)",
+            "fr": "Long Island (K)",
+            "de": "Long Island (K)",
+            "es": "Long Island (K)"
+          }
+        }
       ]
     },
     {
-      "key": "poll_frequency",
+      "key": "price_high",
       "type": "number",
-      "label": { "en": "Refresh interval (s)", "fr": "Intervalle de rafraîchissement (s)" },
+      "label": {
+        "en": "High price threshold ($/MWh)",
+        "fr": "Seuil de prix haut ($/MWh)",
+        "de": "Hohe Preisschwelle ($/MWh)",
+        "es": "Umbral de precio alto ($/MWh)"
+      },
       "description": {
-        "en": "How often sensors are polled, in seconds (one minute minimum).",
-        "fr": "Fréquence d'interrogation des capteurs, en secondes (une minute minimum)."
+        "en": "For the \"Price above\" trigger. Empty: off.",
+        "fr": "Pour le déclencheur « Prix au-dessus ». Vide : désactivé.",
+        "de": "Für den Auslöser „Preis über“. Leer: aus.",
+        "es": "Para el disparador «Precio por encima». Vacío: desactivado."
       },
       "required": false,
-      "default": 300,
-      "min": 60,
-      "max": 3600
+      "min": -1000,
+      "max": 10000
+    },
+    {
+      "key": "price_low",
+      "type": "number",
+      "label": {
+        "en": "Low price threshold ($/MWh)",
+        "fr": "Seuil de prix bas ($/MWh)",
+        "de": "Niedrige Preisschwelle ($/MWh)",
+        "es": "Umbral de precio bajo ($/MWh)"
+      },
+      "description": {
+        "en": "For the \"Price below\" trigger. Empty: off.",
+        "fr": "Pour le déclencheur « Prix en dessous ». Vide : désactivé.",
+        "de": "Für den Auslöser „Preis unter“. Leer: aus.",
+        "es": "Para el disparador «Precio por debajo». Vacío: desactivado."
+      },
+      "required": false,
+      "min": -1000,
+      "max": 10000
+    },
+    {
+      "key": "low_carbon_high",
+      "type": "number",
+      "label": {
+        "en": "Low-carbon share threshold (%)",
+        "fr": "Seuil de part bas carbone (%)",
+        "de": "Schwelle CO₂-armer Anteil (%)",
+        "es": "Umbral de proporción baja en carbono (%)"
+      },
+      "description": {
+        "en": "For the \"Low-carbon share above\" trigger. Empty: off.",
+        "fr": "Pour le déclencheur « Part bas carbone au-dessus ». Vide : désactivé.",
+        "de": "Für den Auslöser „CO₂-armer Anteil über“. Leer: aus.",
+        "es": "Para el disparador «Proporción baja en carbono por encima». Vacío: desactivado."
+      },
+      "required": false,
+      "min": 0,
+      "max": 100
+    },
+    {
+      "key": "language",
+      "type": "select",
+      "label": {
+        "en": "Language of the names",
+        "fr": "Langue des noms",
+        "de": "Sprache der Namen",
+        "es": "Idioma de los nombres"
+      },
+      "description": {
+        "en": "Names of the features (frozen when a device is added), the summary and the trigger messages.",
+        "fr": "Noms des fonctionnalités (figés à l'ajout d'un appareil), résumé et messages.",
+        "de": "Namen der Funktionen (beim Hinzufügen eines Geräts festgelegt), Zusammenfassung und Meldungen.",
+        "es": "Nombres de las funciones (fijados al añadir un dispositivo), resumen y mensajes."
+      },
+      "required": false,
+      "default": "fr",
+      "options": [
+        {
+          "value": "en",
+          "label": {
+            "en": "English",
+            "fr": "English",
+            "de": "English",
+            "es": "English"
+          }
+        },
+        {
+          "value": "fr",
+          "label": {
+            "en": "Français",
+            "fr": "Français",
+            "de": "Français",
+            "es": "Français"
+          }
+        },
+        {
+          "value": "de",
+          "label": {
+            "en": "Deutsch",
+            "fr": "Deutsch",
+            "de": "Deutsch",
+            "es": "Deutsch"
+          }
+        },
+        {
+          "value": "es",
+          "label": {
+            "en": "Español",
+            "fr": "Español",
+            "de": "Español",
+            "es": "Español"
+          }
+        }
+      ]
     }
   ],
   "actions": [
     {
-      "key": "test_weather",
-      "label": { "en": "Test the weather provider", "fr": "Tester le fournisseur météo" },
-      "timeout_seconds": 30
-    },
-    {
-      "key": "identify",
-      "label": { "en": "Identify a device", "fr": "Identifier un appareil" },
-      "fields": [
-        {
-          "key": "device",
-          "type": "select",
-          "source": "devices",
-          "label": { "en": "Device", "fr": "Appareil" },
-          "required": true
-        }
-      ]
+      "key": "test_connection",
+      "label": {
+        "en": "Test the connection to NYISO",
+        "fr": "Tester la connexion à NYISO",
+        "de": "Verbindung zu NYISO testen",
+        "es": "Probar la conexión con NYISO"
+      },
+      "description": {
+        "en": "Reads the prices, the fuel mix and the load now.",
+        "fr": "Lit tout de suite les prix, le mix et la consommation.",
+        "de": "Liest sofort Preise, Strommix und Verbrauch.",
+        "es": "Lee ahora los precios, el mix y el consumo."
+      },
+      "timeout_seconds": 60
     }
   ],
   "scene_triggers": [
     {
-      "key": "motion_detected",
-      "label": { "en": "Motion detected", "fr": "Mouvement détecté" },
+      "key": "price_above",
+      "label": {
+        "en": "NYISO price above the threshold",
+        "fr": "Prix NYISO au-dessus du seuil",
+        "de": "NYISO-Preis über der Schwelle",
+        "es": "Precio NYISO por encima del umbral"
+      },
       "description": {
-        "en": "A demo motion sensor saw a person or an animal move.",
-        "fr": "Un détecteur de démonstration a vu bouger une personne ou un animal."
+        "en": "A followed zone rises above the high price threshold of the configuration. Once per crossing.",
+        "fr": "Une zone suivie passe au-dessus du seuil de prix haut de la configuration. Une fois par passage.",
+        "de": "Eine verfolgte Zone steigt über die hohe Preisschwelle der Konfiguration. Einmal pro Überschreitung.",
+        "es": "Una zona seguida supera el umbral de precio alto de la configuración. Una vez por cruce."
       },
       "fields": [
         {
-          "key": "device",
-          "type": "select",
-          "source": "devices",
-          "label": { "en": "Sensor", "fr": "Détecteur" }
-        },
-        {
-          "key": "target",
+          "key": "zone",
           "type": "multi_select",
-          "label": { "en": "What moved", "fr": "Ce qui a bougé" },
+          "label": {
+            "en": "Zones",
+            "fr": "Zones",
+            "de": "Zonen",
+            "es": "Zonas"
+          },
+          "description": {
+            "en": "Leave empty for any followed zone.",
+            "fr": "Laisser vide pour toute zone suivie.",
+            "de": "Leer lassen für jede verfolgte Zone.",
+            "es": "Déjelo vacío para cualquier zona seguida."
+          },
           "options": [
-            { "value": "person", "label": { "en": "Person", "fr": "Personne" } },
-            { "value": "animal", "label": { "en": "Animal", "fr": "Animal" } }
+            {
+              "value": "61752",
+              "label": {
+                "en": "West (A)",
+                "fr": "West (A)",
+                "de": "West (A)",
+                "es": "West (A)"
+              }
+            },
+            {
+              "value": "61753",
+              "label": {
+                "en": "Genesee (B)",
+                "fr": "Genesee (B)",
+                "de": "Genesee (B)",
+                "es": "Genesee (B)"
+              }
+            },
+            {
+              "value": "61754",
+              "label": {
+                "en": "Central (C)",
+                "fr": "Central (C)",
+                "de": "Central (C)",
+                "es": "Central (C)"
+              }
+            },
+            {
+              "value": "61755",
+              "label": {
+                "en": "North (D)",
+                "fr": "North (D)",
+                "de": "North (D)",
+                "es": "North (D)"
+              }
+            },
+            {
+              "value": "61756",
+              "label": {
+                "en": "Mohawk Valley (E)",
+                "fr": "Mohawk Valley (E)",
+                "de": "Mohawk Valley (E)",
+                "es": "Mohawk Valley (E)"
+              }
+            },
+            {
+              "value": "61757",
+              "label": {
+                "en": "Capital (F)",
+                "fr": "Capital (F)",
+                "de": "Capital (F)",
+                "es": "Capital (F)"
+              }
+            },
+            {
+              "value": "61758",
+              "label": {
+                "en": "Hudson Valley (G)",
+                "fr": "Hudson Valley (G)",
+                "de": "Hudson Valley (G)",
+                "es": "Hudson Valley (G)"
+              }
+            },
+            {
+              "value": "61759",
+              "label": {
+                "en": "Millwood (H)",
+                "fr": "Millwood (H)",
+                "de": "Millwood (H)",
+                "es": "Millwood (H)"
+              }
+            },
+            {
+              "value": "61760",
+              "label": {
+                "en": "Dunwoodie (I)",
+                "fr": "Dunwoodie (I)",
+                "de": "Dunwoodie (I)",
+                "es": "Dunwoodie (I)"
+              }
+            },
+            {
+              "value": "61761",
+              "label": {
+                "en": "New York City (J)",
+                "fr": "New York City (J)",
+                "de": "New York City (J)",
+                "es": "New York City (J)"
+              }
+            },
+            {
+              "value": "61762",
+              "label": {
+                "en": "Long Island (K)",
+                "fr": "Long Island (K)",
+                "de": "Long Island (K)",
+                "es": "Long Island (K)"
+              }
+            }
           ]
         }
       ],
       "variables": [
         {
-          "key": "target",
+          "key": "zone",
           "type": "string",
-          "label": { "en": "What moved", "fr": "Ce qui a bougé" }
+          "label": {
+            "en": "Zone (NYISO PTID)",
+            "fr": "Zone (PTID NYISO)",
+            "de": "Zone (NYISO-PTID)",
+            "es": "Zona (PTID de NYISO)"
+          }
+        },
+        {
+          "key": "zone_name",
+          "type": "string",
+          "label": {
+            "en": "Zone name",
+            "fr": "Nom de la zone",
+            "de": "Name der Zone",
+            "es": "Nombre de la zona"
+          }
+        },
+        {
+          "key": "price",
+          "type": "number",
+          "label": {
+            "en": "Price ($/MWh)",
+            "fr": "Prix ($/MWh)",
+            "de": "Preis ($/MWh)",
+            "es": "Precio ($/MWh)"
+          }
+        },
+        {
+          "key": "threshold",
+          "type": "number",
+          "label": {
+            "en": "Threshold ($/MWh)",
+            "fr": "Seuil ($/MWh)",
+            "de": "Schwelle ($/MWh)",
+            "es": "Umbral ($/MWh)"
+          }
         }
       ]
-    }
-  ],
-  "scene_actions": [
+    },
     {
-      "key": "identify_device",
-      "label": { "en": "Identify a device", "fr": "Identifier un appareil" },
-      "description": {
-        "en": "Make a device signal itself (the demo light blinks).",
-        "fr": "Fait se signaler un appareil (la lampe de démonstration clignote)."
+      "key": "price_below",
+      "label": {
+        "en": "NYISO price below the threshold",
+        "fr": "Prix NYISO en dessous du seuil",
+        "de": "NYISO-Preis unter der Schwelle",
+        "es": "Precio NYISO por debajo del umbral"
       },
-      "timeout_seconds": 15,
+      "description": {
+        "en": "A followed zone falls below the low price threshold of the configuration. Once per crossing.",
+        "fr": "Une zone suivie passe en dessous du seuil de prix bas de la configuration. Une fois par passage.",
+        "de": "Eine verfolgte Zone fällt unter die niedrige Preisschwelle der Konfiguration. Einmal pro Unterschreitung.",
+        "es": "Una zona seguida baja del umbral de precio bajo de la configuración. Una vez por cruce."
+      },
       "fields": [
         {
-          "key": "device",
-          "type": "select",
-          "source": "devices",
-          "label": { "en": "Device", "fr": "Appareil" },
-          "required": true
+          "key": "zone",
+          "type": "multi_select",
+          "label": {
+            "en": "Zones",
+            "fr": "Zones",
+            "de": "Zonen",
+            "es": "Zonas"
+          },
+          "description": {
+            "en": "Leave empty for any followed zone.",
+            "fr": "Laisser vide pour toute zone suivie.",
+            "de": "Leer lassen für jede verfolgte Zone.",
+            "es": "Déjelo vacío para cualquier zona seguida."
+          },
+          "options": [
+            {
+              "value": "61752",
+              "label": {
+                "en": "West (A)",
+                "fr": "West (A)",
+                "de": "West (A)",
+                "es": "West (A)"
+              }
+            },
+            {
+              "value": "61753",
+              "label": {
+                "en": "Genesee (B)",
+                "fr": "Genesee (B)",
+                "de": "Genesee (B)",
+                "es": "Genesee (B)"
+              }
+            },
+            {
+              "value": "61754",
+              "label": {
+                "en": "Central (C)",
+                "fr": "Central (C)",
+                "de": "Central (C)",
+                "es": "Central (C)"
+              }
+            },
+            {
+              "value": "61755",
+              "label": {
+                "en": "North (D)",
+                "fr": "North (D)",
+                "de": "North (D)",
+                "es": "North (D)"
+              }
+            },
+            {
+              "value": "61756",
+              "label": {
+                "en": "Mohawk Valley (E)",
+                "fr": "Mohawk Valley (E)",
+                "de": "Mohawk Valley (E)",
+                "es": "Mohawk Valley (E)"
+              }
+            },
+            {
+              "value": "61757",
+              "label": {
+                "en": "Capital (F)",
+                "fr": "Capital (F)",
+                "de": "Capital (F)",
+                "es": "Capital (F)"
+              }
+            },
+            {
+              "value": "61758",
+              "label": {
+                "en": "Hudson Valley (G)",
+                "fr": "Hudson Valley (G)",
+                "de": "Hudson Valley (G)",
+                "es": "Hudson Valley (G)"
+              }
+            },
+            {
+              "value": "61759",
+              "label": {
+                "en": "Millwood (H)",
+                "fr": "Millwood (H)",
+                "de": "Millwood (H)",
+                "es": "Millwood (H)"
+              }
+            },
+            {
+              "value": "61760",
+              "label": {
+                "en": "Dunwoodie (I)",
+                "fr": "Dunwoodie (I)",
+                "de": "Dunwoodie (I)",
+                "es": "Dunwoodie (I)"
+              }
+            },
+            {
+              "value": "61761",
+              "label": {
+                "en": "New York City (J)",
+                "fr": "New York City (J)",
+                "de": "New York City (J)",
+                "es": "New York City (J)"
+              }
+            },
+            {
+              "value": "61762",
+              "label": {
+                "en": "Long Island (K)",
+                "fr": "Long Island (K)",
+                "de": "Long Island (K)",
+                "es": "Long Island (K)"
+              }
+            }
+          ]
         }
       ],
-      "outputs": [
+      "variables": [
         {
-          "key": "signalled",
-          "type": "boolean",
-          "label": { "en": "Device signalled", "fr": "Appareil signalé" }
+          "key": "zone",
+          "type": "string",
+          "label": {
+            "en": "Zone (NYISO PTID)",
+            "fr": "Zone (PTID NYISO)",
+            "de": "Zone (NYISO-PTID)",
+            "es": "Zona (PTID de NYISO)"
+          }
+        },
+        {
+          "key": "zone_name",
+          "type": "string",
+          "label": {
+            "en": "Zone name",
+            "fr": "Nom de la zone",
+            "de": "Name der Zone",
+            "es": "Nombre de la zona"
+          }
+        },
+        {
+          "key": "price",
+          "type": "number",
+          "label": {
+            "en": "Price ($/MWh)",
+            "fr": "Prix ($/MWh)",
+            "de": "Preis ($/MWh)",
+            "es": "Precio ($/MWh)"
+          }
+        },
+        {
+          "key": "threshold",
+          "type": "number",
+          "label": {
+            "en": "Threshold ($/MWh)",
+            "fr": "Seuil ($/MWh)",
+            "de": "Schwelle ($/MWh)",
+            "es": "Umbral ($/MWh)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "negative_price",
+      "label": {
+        "en": "NYISO negative price",
+        "fr": "Prix NYISO négatif",
+        "de": "Negativer NYISO-Preis",
+        "es": "Precio NYISO negativo"
+      },
+      "description": {
+        "en": "The real-time price of a followed zone turns negative. Once per episode.",
+        "fr": "Le prix temps réel d'une zone suivie devient négatif. Une fois par épisode.",
+        "de": "Der Echtzeitpreis einer verfolgten Zone wird negativ. Einmal pro Episode.",
+        "es": "El precio en tiempo real de una zona seguida se vuelve negativo. Una vez por episodio."
+      },
+      "fields": [
+        {
+          "key": "zone",
+          "type": "multi_select",
+          "label": {
+            "en": "Zones",
+            "fr": "Zones",
+            "de": "Zonen",
+            "es": "Zonas"
+          },
+          "description": {
+            "en": "Leave empty for any followed zone.",
+            "fr": "Laisser vide pour toute zone suivie.",
+            "de": "Leer lassen für jede verfolgte Zone.",
+            "es": "Déjelo vacío para cualquier zona seguida."
+          },
+          "options": [
+            {
+              "value": "61752",
+              "label": {
+                "en": "West (A)",
+                "fr": "West (A)",
+                "de": "West (A)",
+                "es": "West (A)"
+              }
+            },
+            {
+              "value": "61753",
+              "label": {
+                "en": "Genesee (B)",
+                "fr": "Genesee (B)",
+                "de": "Genesee (B)",
+                "es": "Genesee (B)"
+              }
+            },
+            {
+              "value": "61754",
+              "label": {
+                "en": "Central (C)",
+                "fr": "Central (C)",
+                "de": "Central (C)",
+                "es": "Central (C)"
+              }
+            },
+            {
+              "value": "61755",
+              "label": {
+                "en": "North (D)",
+                "fr": "North (D)",
+                "de": "North (D)",
+                "es": "North (D)"
+              }
+            },
+            {
+              "value": "61756",
+              "label": {
+                "en": "Mohawk Valley (E)",
+                "fr": "Mohawk Valley (E)",
+                "de": "Mohawk Valley (E)",
+                "es": "Mohawk Valley (E)"
+              }
+            },
+            {
+              "value": "61757",
+              "label": {
+                "en": "Capital (F)",
+                "fr": "Capital (F)",
+                "de": "Capital (F)",
+                "es": "Capital (F)"
+              }
+            },
+            {
+              "value": "61758",
+              "label": {
+                "en": "Hudson Valley (G)",
+                "fr": "Hudson Valley (G)",
+                "de": "Hudson Valley (G)",
+                "es": "Hudson Valley (G)"
+              }
+            },
+            {
+              "value": "61759",
+              "label": {
+                "en": "Millwood (H)",
+                "fr": "Millwood (H)",
+                "de": "Millwood (H)",
+                "es": "Millwood (H)"
+              }
+            },
+            {
+              "value": "61760",
+              "label": {
+                "en": "Dunwoodie (I)",
+                "fr": "Dunwoodie (I)",
+                "de": "Dunwoodie (I)",
+                "es": "Dunwoodie (I)"
+              }
+            },
+            {
+              "value": "61761",
+              "label": {
+                "en": "New York City (J)",
+                "fr": "New York City (J)",
+                "de": "New York City (J)",
+                "es": "New York City (J)"
+              }
+            },
+            {
+              "value": "61762",
+              "label": {
+                "en": "Long Island (K)",
+                "fr": "Long Island (K)",
+                "de": "Long Island (K)",
+                "es": "Long Island (K)"
+              }
+            }
+          ]
+        }
+      ],
+      "variables": [
+        {
+          "key": "zone",
+          "type": "string",
+          "label": {
+            "en": "Zone (NYISO PTID)",
+            "fr": "Zone (PTID NYISO)",
+            "de": "Zone (NYISO-PTID)",
+            "es": "Zona (PTID de NYISO)"
+          }
+        },
+        {
+          "key": "zone_name",
+          "type": "string",
+          "label": {
+            "en": "Zone name",
+            "fr": "Nom de la zone",
+            "de": "Name der Zone",
+            "es": "Nombre de la zona"
+          }
+        },
+        {
+          "key": "price",
+          "type": "number",
+          "label": {
+            "en": "Price ($/MWh)",
+            "fr": "Prix ($/MWh)",
+            "de": "Preis ($/MWh)",
+            "es": "Precio ($/MWh)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "low_carbon_above",
+      "label": {
+        "en": "New York grid: low-carbon share high",
+        "fr": "Réseau de New York : part bas carbone haute",
+        "de": "Netz New York: hoher CO₂-armer Anteil",
+        "es": "Red de Nueva York: proporción baja en carbono alta"
+      },
+      "description": {
+        "en": "The low-carbon share of the New York generation rises above the threshold of the configuration. Once per crossing.",
+        "fr": "La part bas carbone de la production de New York passe au-dessus du seuil de la configuration. Une fois par passage.",
+        "de": "Der CO₂-arme Anteil der Erzeugung in New York steigt über die Schwelle der Konfiguration. Einmal pro Überschreitung.",
+        "es": "La proporción baja en carbono de la generación de Nueva York supera el umbral de la configuración. Una vez por cruce."
+      },
+      "variables": [
+        {
+          "key": "low_carbon_share",
+          "type": "number",
+          "label": {
+            "en": "Low-carbon share (%)",
+            "fr": "Part bas carbone (%)",
+            "de": "CO₂-armer Anteil (%)",
+            "es": "Proporción baja en carbono (%)"
+          }
+        },
+        {
+          "key": "renewable_share",
+          "type": "number",
+          "label": {
+            "en": "Renewable share (%)",
+            "fr": "Part renouvelable (%)",
+            "de": "Erneuerbarer Anteil (%)",
+            "es": "Proporción renovable (%)"
+          }
+        },
+        {
+          "key": "carbon_intensity",
+          "type": "number",
+          "label": {
+            "en": "CO₂ intensity (g/kWh)",
+            "fr": "Taux de CO₂ (g/kWh)",
+            "de": "CO₂-Intensität (g/kWh)",
+            "es": "Intensidad de CO₂ (g/kWh)"
+          }
+        },
+        {
+          "key": "threshold",
+          "type": "number",
+          "label": {
+            "en": "Threshold (%)",
+            "fr": "Seuil (%)",
+            "de": "Schwelle (%)",
+            "es": "Umbral (%)"
+          }
         }
       ]
     }
   ],
   "widgets": [
     {
-      "key": "demo_status",
-      "label": { "en": "Demo status", "fr": "État de la démo" },
-      "description": {
-        "en": "Live temperature and plug power, plug connection and observed location.",
-        "fr": "Température et puissance en direct, connexion de la prise, position observée."
+      "key": "grid",
+      "label": {
+        "en": "New York power grid",
+        "fr": "Réseau de New York",
+        "de": "Stromnetz New York",
+        "es": "Red de Nueva York"
       },
-      "icon": "activity",
-      "action_timeout_seconds": 15
+      "description": {
+        "en": "Real-time price of a zone, low-carbon share, CO₂, load, a 24-hour chart and the mix as bars.",
+        "fr": "Prix temps réel d'une zone, part bas carbone, CO₂, consommation, courbe sur 24 h et mix en barres.",
+        "de": "Echtzeitpreis einer Zone, CO₂-armer Anteil, CO₂, Verbrauch, 24-h-Kurve und Strommix als Balken.",
+        "es": "Precio en tiempo real de una zona, bajo en carbono, CO₂, consumo, curva de 24 h y mix en barras."
+      },
+      "icon": "zap",
+      "settings": [
+        {
+          "key": "zone",
+          "type": "select",
+          "label": {
+            "en": "Price zone",
+            "fr": "Zone de prix",
+            "de": "Preiszone",
+            "es": "Zona de precio"
+          },
+          "required": false,
+          "default": "61761",
+          "options": [
+            {
+              "value": "61752",
+              "label": {
+                "en": "West (A)",
+                "fr": "West (A)",
+                "de": "West (A)",
+                "es": "West (A)"
+              }
+            },
+            {
+              "value": "61753",
+              "label": {
+                "en": "Genesee (B)",
+                "fr": "Genesee (B)",
+                "de": "Genesee (B)",
+                "es": "Genesee (B)"
+              }
+            },
+            {
+              "value": "61754",
+              "label": {
+                "en": "Central (C)",
+                "fr": "Central (C)",
+                "de": "Central (C)",
+                "es": "Central (C)"
+              }
+            },
+            {
+              "value": "61755",
+              "label": {
+                "en": "North (D)",
+                "fr": "North (D)",
+                "de": "North (D)",
+                "es": "North (D)"
+              }
+            },
+            {
+              "value": "61756",
+              "label": {
+                "en": "Mohawk Valley (E)",
+                "fr": "Mohawk Valley (E)",
+                "de": "Mohawk Valley (E)",
+                "es": "Mohawk Valley (E)"
+              }
+            },
+            {
+              "value": "61757",
+              "label": {
+                "en": "Capital (F)",
+                "fr": "Capital (F)",
+                "de": "Capital (F)",
+                "es": "Capital (F)"
+              }
+            },
+            {
+              "value": "61758",
+              "label": {
+                "en": "Hudson Valley (G)",
+                "fr": "Hudson Valley (G)",
+                "de": "Hudson Valley (G)",
+                "es": "Hudson Valley (G)"
+              }
+            },
+            {
+              "value": "61759",
+              "label": {
+                "en": "Millwood (H)",
+                "fr": "Millwood (H)",
+                "de": "Millwood (H)",
+                "es": "Millwood (H)"
+              }
+            },
+            {
+              "value": "61760",
+              "label": {
+                "en": "Dunwoodie (I)",
+                "fr": "Dunwoodie (I)",
+                "de": "Dunwoodie (I)",
+                "es": "Dunwoodie (I)"
+              }
+            },
+            {
+              "value": "61761",
+              "label": {
+                "en": "New York City (J)",
+                "fr": "New York City (J)",
+                "de": "New York City (J)",
+                "es": "New York City (J)"
+              }
+            },
+            {
+              "value": "61762",
+              "label": {
+                "en": "Long Island (K)",
+                "fr": "Long Island (K)",
+                "de": "Long Island (K)",
+                "es": "Long Island (K)"
+              }
+            }
+          ]
+        },
+        {
+          "key": "show_chart",
+          "type": "boolean",
+          "label": {
+            "en": "Show the 24-hour chart",
+            "fr": "Afficher la courbe sur 24 h",
+            "de": "24-h-Kurve anzeigen",
+            "es": "Mostrar la curva de 24 h"
+          },
+          "description": {
+            "en": "The price of the zone once its device is added, else the CO₂.",
+            "fr": "Le prix de la zone une fois son appareil ajouté, sinon le CO₂.",
+            "de": "Der Preis der Zone, sobald ihr Gerät hinzugefügt ist, sonst das CO₂.",
+            "es": "El precio de la zona una vez añadido su dispositivo, si no el CO₂."
+          },
+          "required": false,
+          "default": true
+        },
+        {
+          "key": "show_mix",
+          "type": "boolean",
+          "label": {
+            "en": "Show the fuel mix",
+            "fr": "Afficher le mix",
+            "de": "Strommix anzeigen",
+            "es": "Mostrar el mix"
+          },
+          "required": false,
+          "default": true
+        }
+      ]
     }
   ]
 }

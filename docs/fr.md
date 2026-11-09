@@ -1,67 +1,149 @@
-# Template de démonstration
+# NYISO New York Grid
 
-Ceci est la documentation utilisateur de l'intégration. Gladys ré-héberge ce
-fichier et affiche un lien **Documentation** permanent vers lui dans l'écran
-de configuration (dans la langue de l'utilisateur, avec l'anglais en repli) —
-c'est au moment de configurer que l'utilisateur en a le plus besoin. Gardez
-les courtes indications d'accueil dans les blocs `section` du `config_schema`
-du manifest ; mettez ici le pas-à-pas détaillé (captures d'écran, dépannage…).
+Les chiffres du réseau électrique de New York en direct dans Gladys, tirés
+des fichiers publics de NYISO, l'opérateur du réseau de l'État de New York :
+le prix temps réel de chaque zone de prix, la consommation, la production par
+filière, la part bas carbone et un taux de CO₂ estimé.
+
+Développée sans compte d'électricité à New York, les données étant publiques : les retours sont les bienvenus.
+Sans lien avec NYISO.
 
 ## Ce que vous obtenez
 
-Six appareils de démonstration apparaissent après l'installation : une
-station météo (vraies données Open-Meteo), un interrupteur, une lampe
-variable, une prise connectée avec mesure de puissance, un détecteur de
-mouvement et une caméra.
+- Un appareil **Réseau électrique de New York** : consommation de l'État, taux
+  de CO₂ estimé, parts bas carbone et renouvelable, part de chaque filière
+  NYISO, et une phrase de résumé.
+- Un appareil par **zone de prix** suivie : son prix temps réel ($/MWh) et sa
+  consommation.
+- Quatre déclencheurs de scène (prix au-dessus, prix en dessous, prix négatif,
+  part bas carbone au-dessus) et un widget de tableau de bord.
+
+**Les prix sont des prix de gros** du marché temps réel de NYISO, pas votre
+tarif d'électricité : le fournisseur ajoute l'acheminement, les taxes et sa
+marge. Ils montrent tout de même quand l'électricité est abondante ou rare.
+
+## Prérequis
+
+- Gladys 5.3.0 ou plus récent.
+- Un accès à Internet depuis Gladys (les fichiers sont lus sur
+  `mis.nyiso.com`). Ni compte ni clé.
+
+## Installation
+
+Dans Gladys, **Intégrations → Installer depuis GitHub**, puis l'adresse du
+dépôt : `https://github.com/guim31/gladys-us-grid`.
 
 ## Configuration
 
-1. Ouvrez l'onglet **Configuration** de l'intégration.
-2. Renseignez la **latitude** et la **longitude** que la station météo de
-   démonstration doit observer (Paris par défaut), et choisissez votre unité
-   de température. L'**intervalle de rafraîchissement** règle la fréquence
-   de lecture de la station météo et de la puissance de la prise : toutes
-   les 5 minutes par défaut, toutes les minutes au plus.
-3. Enregistrez : les appareils apparaissent dans l'onglet **Découverte**,
-   prêts à être ajoutés.
+1. **Zones de prix à suivre** : choisissez votre ou vos zones parmi les onze
+   zones de NYISO (West, Genesee, Central, North, Mohawk Valley, Capital,
+   Hudson Valley, Millwood, Dunwoodie, New York City, Long Island). Les
+   factures indiquent la zone ; NYISO en publie la carte sur son site.
+2. **Seuils** (facultatifs), pour les déclencheurs : prix haut et prix bas en
+   $/MWh, part bas carbone en %. Vide, le déclencheur reste désactivé.
+3. **Langue des noms** : celle des noms des fonctionnalités (figés à l'ajout
+   d'un appareil), du résumé et du message de test.
+4. Enregistrez, puis ajoutez les appareils depuis l'onglet **Découverte**.
 
-Le réglage **Préférer la connexion locale** pilote la prise de
-démonstration : elle affiche en badge le canal réellement utilisé (local ou
-cloud), avec un point orange quand elle fonctionne en mode dégradé (local
-refusé, bascule cloud).
+## Appareils
 
-## Actions
+### Réseau électrique de New York
 
-- **Tester le fournisseur météo** — effectue une requête en direct vers
-  Open-Meteo et affiche la température et l'humidité actuelles sous le
-  bouton.
-- **Identifier un appareil** — choisissez un de vos appareils dans la liste
-  et il se signale (la lampe de démonstration « clignote » dans les logs).
+| Fonctionnalité           | Unité     | Remarque                                                                                          |
+| ------------------------ | --------- | ------------------------------------------------------------------------------------------------- |
+| Consommation de New York | kW        | tout l'État (Gladys n'a pas d'unité MW)                                                           |
+| Taux de CO₂ (estimé)     | g CO₂/kWh | d'après le mix, voir plus bas                                                                     |
+| Part bas carbone         | %         | nucléaire, hydraulique, éolien, autres renouvelables                                              |
+| Part renouvelable        | %         | hydraulique, éolien, autres renouvelables                                                         |
+| Part de chaque filière   | %         | bicombustible, gaz naturel, nucléaire, autres fossiles, autres renouvelables, éolien, hydraulique |
+| Résumé                   | texte     | « 16,5 GW consommés, 54 % bas carbone, … »                                                        |
+
+Les parts sont celles de la production **dans l'État de New York** : les
+importations des réseaux voisins ne figurent pas dans le mix de NYISO.
+
+### Zone de prix
+
+`NYISO <zone> (<lettre>)` : le **prix temps réel** de la zone (LBMP, $/MWh,
+pas de cinq minutes) et la **consommation** de la zone (kW).
 
 ## Scènes
 
-L'intégration ajoute ses propres cartes à l'éditeur de scènes (Gladys 5.1
-ou plus récent), dans la catégorie **Intégrations** :
+Les déclencheurs surveillent les zones suivies. Chacun se déclenche **une
+fois par passage**, et se réarme quand la valeur est repassée du bon côté du
+seuil avec une marge (5 $/MWh pour les prix, 1 $ pour un prix négatif,
+2 points pour la part) : le marché franchit un seuil dans les deux sens toutes
+les cinq minutes. Ce qui est franchi est conservé après un redémarrage.
 
-- **Mouvement détecté** (déclencheur) — lance la scène quand un détecteur
-  de démonstration voit bouger quelque chose. Choisissez éventuellement le
-  détecteur et ce qui a bougé (personne, animal) ; laissés vides, toute
-  détection correspond. Les actions suivantes peuvent lire ce qui a bougé
-  avec `{{triggerEvent.data.target}}`.
-- **Identifier un appareil** (action) — fait se signaler l'appareil choisi.
-  Elle indique si l'appareil a pu se signaler, pour que les actions
-  suivantes puissent en dépendre.
+### Prix NYISO au-dessus du seuil
+
+Une zone suivie passe au-dessus du seuil de prix haut. Filtre : zones.
+Variables : `zone` (PTID NYISO), `zone_name`, `price`, `threshold`.
+
+### Prix NYISO en dessous du seuil
+
+Une zone suivie passe en dessous du seuil de prix bas. Mêmes filtre et
+variables.
+
+### Prix NYISO négatif
+
+Le prix d'une zone suivie devient négatif (trop de production, souvent
+l'éolien et l'hydraulique la nuit). Variables : `zone`, `zone_name`, `price`.
+
+### Réseau de New York : part bas carbone haute
+
+La part bas carbone passe au-dessus de son seuil : un bon moment pour lancer
+les appareils. Variables : `low_carbon_share`, `renewable_share`,
+`carbon_intensity`, `threshold`.
 
 ## Tableau de bord
 
-Ajoutez le widget **État de la démo** à un tableau de bord : il affiche en
-direct la température de la station météo et la puissance de la prise du
-bureau, la connexion utilisée par la prise (en orange si dégradée) et la
-position observée. Son bouton **Identifier la lampe** fait se signaler la
-lampe de démonstration.
+### Widget Réseau de New York
+
+Le prix d'une zone (réglage, New York City par défaut, sans appareil
+nécessaire), la part bas carbone, le CO₂ estimé, la consommation, une courbe
+sur 24 h (le prix de la zone une fois son appareil ajouté, sinon le CO₂ de
+l'appareil réseau) et le mix en barres. La courbe et le mix ont chacun un
+réglage pour les masquer.
+
+## Actions
+
+**Tester la connexion à NYISO** lit tout de suite les prix, le mix et la
+consommation, et répond avec le prix de votre première zone.
+
+## Données et limites
+
+- Source : fichiers publics de NYISO, toutes les cinq minutes : prix zonaux
+  temps réel, mix de production temps réel, consommation réelle. Les heures de
+  NYISO sont celles de New York (EST ou EDT) ; Gladys les affiche dans son
+  propre fuseau.
+- L'intégration les lit toutes les cinq minutes, seulement quand quelque chose
+  s'en sert (un appareil, un seuil, le widget) : quelques mégaoctets par jour,
+  compressés. NYISO n'annonce pas de quota pour ces fichiers publics.
+- Un chiffre de plus de 30 minutes (prix) ou d'une heure (mix, consommation)
+  n'est jamais publié : pas de valeur plutôt qu'une valeur périmée, jamais de
+  zéro.
+- **Le taux de CO₂ est une estimation** : chaque filière multipliée par son
+  facteur d'émission en cycle de vie (médianes du GIEC 2014, comme Electricity
+  Maps) : 490 g/kWh pour le gaz et le bicombustible, 650 pour les autres
+  fossiles (fioul), 230 pour les autres renouvelables (surtout biomasse), 24
+  pour l'hydraulique, 12 pour le nucléaire, 11 pour l'éolien. Les
+  importations ne sont pas comptées.
+- NYISO seulement pour l'instant. La Californie est couverte par
+  l'[intégration CAISO](https://github.com/LM1LC3N7/gladys-caiso)
+  (gladys-caiso). ISO New England, MISO, SPP, PJM et ERCOT ne publient pas de
+  fichier ouvert lisible sans compte ni navigateur.
 
 ## Dépannage
 
-L'intégration journalise tout ce qu'elle fait : consultez les logs de
-l'intégration depuis l'interface Gladys (ou `docker logs` sur l'hôte) avec
-`LOG_LEVEL=debug` pour le détail complet.
+- **« Le fichier de prix de NYISO est illisible »** dans l'écran de
+  configuration : NYISO n'a pas répondu ; l'intégration réessaie toutes les
+  cinq minutes.
+- Rien dans les appareils : vérifiez qu'ils sont ajoutés, et utilisez
+  **Tester la connexion à NYISO**.
+- Journaux détaillés : `LOG_LEVEL=debug` sur l'intégration.
+
+## Crédits
+
+Données : NYISO (New York Independent System Operator), données publiques de
+marché et d'exploitation. Facteurs d'émission : GIEC AR5 (2014), via
+Electricity Maps. Code sous licence Apache 2.0. Sans lien avec NYISO.
