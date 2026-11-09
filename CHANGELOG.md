@@ -10,6 +10,8 @@ the notes of the version's GitHub Release.
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-11-09
+
 ### Added
 
 - The New York power grid (NYISO) live, from its public files, no account:
@@ -24,3 +26,6 @@ the notes of the version's GitHub Release.
 - A "Test the connection to NYISO" action.
 - Texts, feature names and documentation in English, French, German and
   Spanish.
+
+[Unreleased]: https://github.com/guim31/gladys-us-grid/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/guim31/gladys-us-grid/releases/tag/v1.0.0
