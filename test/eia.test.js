@@ -246,3 +246,50 @@ test('the test action reports the EIA too', async (t) => {
   const answer = await world.fake.action('test_connection', {});
   assert.match(answer.data.message, /EIA answers: 2 grid\(s\) read\.$/);
 });
+
+test('a source reported by day only does not hold the mix back to the evening before', () => {
+  const row = (hour, fuel, value) => ({
+    period: `2026-11-12T${String(hour).padStart(2, '0')}`,
+    respondent: 'XX',
+    fueltype: fuel,
+    value: String(value),
+  });
+  // Solar reported until 00:00 UTC (evening in the US), then only gas and wind.
+  const rows = [
+    row(0, 'NG', 100),
+    row(0, 'WND', 50),
+    row(0, 'SUN', 10),
+    ...[1, 2, 3, 4, 5, 6, 7, 8].flatMap((hour) => [row(hour, 'NG', 100), row(hour, 'WND', 50)]),
+    // 09:00 being filled: gas only so far.
+    row(9, 'NG', 100),
+  ];
+  const mix = parseFuelData(rows, Date.UTC(2026, 10, 12, 10)).XX;
+  assert.equal(mix.at, '2026-11-12T08:00:00.000Z');
+});
+
+test('the forecast at a full hour is the one of the hour starting', () => {
+  const forecasts = [
+    { at: '2026-11-12T12:00:00.000Z', mw: 1 },
+    { at: '2026-11-12T13:00:00.000Z', mw: 2 },
+  ];
+  assert.equal(forecastAt(forecasts, Date.UTC(2026, 10, 12, 12)).forecast.mw, 2);
+});
+
+test('removing the EIA grids clears an EIA failure; saving again does not read again', async (t) => {
+  const world = await createWorld({ config: EIA_CONFIG });
+  t.after(() => world.app.stop());
+  assert.equal(world.nyiso.count('eia'), 2);
+  // The same configuration saved again a minute later: no new read.
+  world.clock.advance(TICK_MS);
+  await world.fake.configUpdated(EIA_CONFIG);
+  assert.equal(world.nyiso.count('eia'), 2);
+  // Another grid: read at once.
+  await world.fake.configUpdated({ ...EIA_CONFIG, eia_regions: ['ERCO', 'PJM'] });
+  assert.equal(world.nyiso.count('eia'), 4);
+  // The EIA refuses, then the grids are removed: the status comes back.
+  world.nyiso.eia = () => json(429, { error: { code: 'OVER_RATE_LIMIT' } });
+  await world.fake.configUpdated({ ...EIA_CONFIG, eia_regions: ['MISO'] });
+  assert.equal(world.fake.connectionStatus.connected, false);
+  await world.fake.configUpdated({ ...EIA_CONFIG, eia_regions: [] });
+  assert.equal(world.fake.connectionStatus.connected, true);
+});

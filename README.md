@@ -69,7 +69,9 @@ fossil fuels 650, other renewables 230, hydro 24, nuclear 12, wind 11). Imports 
 Form EIA-930 (Hourly Electric Grid Monitor), through the API v2 of the EIA:
 `/v2/electricity/rto/region-data` (demand `D`, day-ahead forecast `DF`) and `fuel-type-data`
 (net generation by source). Once an hour, the container sends **one grouped request per dataset**
-for every grid followed (paged past 5,000 rows), only when an EIA device is added. Periods are UTC
+for every grid followed (paged past 5,000 rows), only while an EIA device is added, plus one read
+when the key or the grids change, to check them (a configuration saved again within five minutes
+is not read again). Periods are UTC
 hours stamped with the end of the hour. The demand comes about an hour late, the fuel mix four to
 eight hours late (more for some small authorities), hence the "Data time" feature. A demand older
 than 6 hours or a mix older than 24 hours is not published. The forecasts are worked out at each

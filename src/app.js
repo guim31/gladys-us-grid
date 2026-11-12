@@ -95,6 +95,8 @@ export function registerHandlers(
   let eiaAttemptAt = -Infinity;
   let eiaKeyRefused = false;
   let eiaFirstRead = true;
+  /** The key and grids of the last EIA read: a new one is read at once. */
+  let eiaReadFor = null;
   let widgetShownAt = -Infinity;
   let lastTickAt = -Infinity;
   let lastStatus = null;
@@ -119,6 +121,16 @@ export function registerHandlers(
   const isZoneCreated = (ptid) => isCreatedId(zoneIds(gladys, ptid).device);
   const isEiaCreated = (code) => isCreatedId(eiaIds(gladys, code).device);
   const wantsEia = () => eiaRegions(config).some(isEiaCreated);
+  const eiaSignature = () => JSON.stringify([config.eia_api_key, eiaRegions(config)]);
+  /**
+   * A forced tick (start, new configuration) reads the EIA when its key or
+   * grids changed, else not twice within a few minutes: saving the
+   * configuration again and again must not use up the key's quota.
+   */
+  const eiaDue = (force) =>
+    force
+      ? eiaReadFor !== eiaSignature() || now() - eiaAttemptAt >= EIA_MIN_GAP_MS
+      : wantsEia() && now() - eiaAttemptAt >= EIA_PERIOD_MS;
   const widgetWanted = () => now() - widgetShownAt < WIDGET_INTEREST_MS;
   const wantsPrices = () => config.zones.length > 0 || widgetWanted();
   const wantsMix = () =>
@@ -191,9 +203,13 @@ export function registerHandlers(
   async function refreshEia() {
     const regions = eiaRegions(config);
     if (regions.length === 0) {
+      // Nothing to read any more (key or grids removed): no failure either.
+      eiaKeyRefused = false;
+      eiaIssues.ok('read', 'No EIA grid to read any more');
       return true;
     }
     eiaAttemptAt = now();
+    eiaReadFor = eiaSignature();
     try {
       const read = await fetchEia(fetchImpl, { apiKey: config.eia_api_key, regions, now: now() });
       const next = {};
@@ -368,10 +384,7 @@ export function registerHandlers(
         await refreshMix();
         read = true;
       }
-      if (
-        eiaRegions(config).length > 0 &&
-        (force || (wantsEia() && now() - eiaAttemptAt >= EIA_PERIOD_MS))
-      ) {
+      if (eiaDue(force)) {
         await refreshEia();
       }
       await publishStates();

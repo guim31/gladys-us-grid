@@ -40,6 +40,7 @@ export const EIA_FUELS = {
   WND: { key: 'wind', factor: 11, renewable: true, lowCarbon: true },
   SUN: { key: 'solar', factor: 45, renewable: true, lowCarbon: true },
   SNB: { key: 'solar', factor: 45, renewable: true, lowCarbon: true },
+  WNB: { key: 'wind', factor: 11, renewable: true, lowCarbon: true },
   WAT: { key: 'hydro', factor: 24, renewable: true, lowCarbon: true },
   GEO: { key: 'other', factor: 38, renewable: true, lowCarbon: true },
   OIL: { key: 'other', factor: 650, renewable: false, lowCarbon: false },
@@ -165,7 +166,8 @@ export function parseRegionData(rows, now) {
  * @param {number} now
  */
 export function forecastAt(forecasts = [], now) {
-  const hourEnd = Math.ceil(now / HOUR_MS) * HOUR_MS;
+  // The hour in progress ends at the next full hour (at 12:00 sharp, 13:00).
+  const hourEnd = Math.floor(now / HOUR_MS) * HOUR_MS + HOUR_MS;
   const ahead = forecasts.filter((point) => {
     const at = Date.parse(point.at);
     return at >= hourEnd && at <= now + PEAK_AHEAD_MS;
@@ -177,9 +179,11 @@ export function forecastAt(forecasts = [], now) {
 }
 
 /**
- * fuel-type-data rows → per region the mix of its latest complete hour (as
- * many sources as the most complete hour of the window: the EIA fills an hour
- * source by source).
+ * fuel-type-data rows → per region the mix of its latest complete hour. The
+ * EIA fills an hour source by source: an hour is complete when it has as many
+ * sources as the hours just before it (the median of the six previous), not
+ * as the most complete hour of the window (a source reported only by day,
+ * solar, would hold the mix back to the evening before).
  * @param {object[]} rows
  * @param {number} now
  */
@@ -195,10 +199,15 @@ export function parseFuelData(rows, now) {
       }
       hours.set(at, [...(hours.get(at) ?? []), { fuel: row.fueltype, mw }]);
     }
-    const most = Math.max(0, ...[...hours.values()].map((hour) => hour.length));
-    const at = [...hours.keys()]
-      .sort((a, b) => b - a)
-      .find((instant) => hours.get(instant).length === most);
+    const instants = [...hours.keys()].sort((a, b) => b - a);
+    const at = instants.find((instant, index) => {
+      const before = instants
+        .slice(index + 1, index + 7)
+        .map((previous) => hours.get(previous).length)
+        .sort((a, b) => a - b);
+      const usual = before.length > 0 ? before[Math.floor(before.length / 2)] : 0;
+      return hours.get(instant).length >= usual;
+    });
     const mix = at === undefined ? null : eiaMix(at, hours.get(at));
     if (mix) {
       result[code] = mix;
