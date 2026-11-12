@@ -280,7 +280,8 @@ long, et sur un « Sie »/« Ihr… » de politesse en allemand. Le store exige 
 
 - API v2 `https://api.eia.gov/v2/electricity/rto/` : `region-data` (types `D` demande, `DF` prévision J+1)
   et `fuel-type-data`, `frequency=hourly`. Clé gratuite en paramètre `api_key` (jamais journalisée :
-  `hideKey`). `DEMO_KEY` répond mais à 10 requêtes par heure (`x-ratelimit-limit`), partagées par IP.
+  `hideKey`). `DEMO_KEY` répond mais à 10 requêtes en tout, partagées par IP, puis 429 `OVER_RATE_LIMIT` avec
+  `retry-after` d'environ 9 h 30 (mesuré le 12/11/2026) : inutilisable pour un essai suivi.
   Clé invalide : HTTP 403 `API_KEY_INVALID`. 5 000 lignes au plus par page (`offset`).
 - Les périodes sont des heures UTC **à heure de fin** (« 2026-11-12T12 » = 11 h–12 h UTC). Mesuré le
   12/11/2026 à 13 h 22 UTC : demande jusqu'à 12 h (1 h de retard), mix jusqu'à 04 h–07 h (4 à 8 h de
