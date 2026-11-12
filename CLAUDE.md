@@ -34,8 +34,10 @@ pushing.
 index.js                          SDK wiring only: handlers registered before connect()
 src/app.js                        the integration: timer, reads, triggers, states, handlers
 src/nyiso.js                      the NYISO files: URLs, CSV, New York time, mix and CO₂
+src/eia.js                        the EIA API v2: grouped paged requests, demand, forecasts, mix and CO₂
+src/eia-regions.js                the EIA respondents (regions, balancing authorities), keyed by code
 src/http.js                       GET with timeout and honest User-Agent
-src/devices.js                    the grid and zone devices, their states
+src/devices.js                    the grid, zone and EIA devices, their states
 src/triggers.js                   threshold crossings (once per crossing, hysteresis)
 src/widgets.js                    the "grid" dashboard widget
 src/zones.js                      the eleven NYISO load zones, keyed by PTID
@@ -270,6 +272,22 @@ long, et sur un « Sie »/« Ihr… » de politesse en allemand. Le store exige 
 - Vérifié le 7/11/2026 : ISO-NE (CSV d'ISO Express en 403 sans session de navigateur, seul le JSON
   interne du site répond), MISO (« no data »), SPP (muet), PJM (clé) : écartés, la règle étant de
   ne pas imiter un navigateur. CAISO est couvert par `LM1LC3N7/gladys-caiso`.
-- Déclencheurs à seuil : les seuils sont dans la configuration (les filtres de scène ne font
+- Déclencheurs à seuil (NYISO seul) : les seuils sont dans la configuration (les filtres de scène ne font
   qu'égalité) ; une fois par passage, réarmement avec une marge, état gardé sous `/data` avec le
   seuil.
+
+## EIA (depuis la 1.1)
+
+- API v2 `https://api.eia.gov/v2/electricity/rto/` : `region-data` (types `D` demande, `DF` prévision J+1)
+  et `fuel-type-data`, `frequency=hourly`. Clé gratuite en paramètre `api_key` (jamais journalisée :
+  `hideKey`). `DEMO_KEY` répond mais à 10 requêtes en tout, partagées par IP, puis 429 `OVER_RATE_LIMIT` avec
+  `retry-after` d'environ 9 h 30 (mesuré le 12/11/2026) : inutilisable pour un essai suivi.
+  Clé invalide : HTTP 403 `API_KEY_INVALID`. 5 000 lignes au plus par page (`offset`).
+- Les périodes sont des heures UTC **à heure de fin** (« 2026-11-12T12 » = 11 h–12 h UTC). Mesuré le
+  12/11/2026 à 13 h 22 UTC : demande jusqu'à 12 h (1 h de retard), mix jusqu'à 04 h–07 h (4 à 8 h de
+  retard). Une heure de mix se remplit source par source : prendre la dernière heure aussi complète que
+  la plus complète de la fenêtre.
+- Codes de source : `NG`, `COL`, `NUC`, `WND`, `SUN`, `WAT`, `OIL`, `OTH`, `BAT` (batteries, négatif en
+  charge) et d'autres possibles (`SNB`, `GEO`, `PS`) ; le stockage est exclu du mix.
+- Pas de nouveau déclencheur : les chiffres EIA changent à l'heure, un seuil sur une fonctionnalité suffit.
+  Les appareils EIA n'existent qu'avec une clé ; identifiant externe `eia:<code respondent>`.

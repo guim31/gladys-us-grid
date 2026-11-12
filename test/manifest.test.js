@@ -22,7 +22,7 @@ const keysOf = (list) => (list ?? []).map((entry) => entry.key);
 const field = (key) => manifest.config_schema.find((f) => f.key === key);
 
 test('identity: name, image, cover, cloud transport, energy category, US', () => {
-  assert.equal(manifest.name, 'NYISO New York Grid');
+  assert.equal(manifest.name, 'US Power Grids');
   assert.equal(manifest.type, 'device');
   assert.match(manifest.docker_image, /^ghcr\.io\/guim31\/gladys-us-grid:/);
   assert.equal(

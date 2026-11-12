@@ -1,12 +1,12 @@
 {
   "manifest_version": 1,
   "type": "device",
-  "name": "NYISO New York Grid",
+  "name": "US Power Grids",
   "description": {
-    "en": "New York power grid live: real-time price by zone, load, fuel mix, low-carbon share.",
-    "fr": "Réseau de New York en direct : prix temps réel par zone, consommation, mix, part bas carbone.",
-    "de": "Stromnetz New York live: Echtzeitpreis pro Zone, Verbrauch, Strommix, CO₂-armer Anteil.",
-    "es": "Red eléctrica de Nueva York en directo: precio por zona, consumo, mix, proporción baja en carbono."
+    "en": "US power grids: NYISO live by zone, and every US grid via the EIA: demand, fuel mix, CO₂.",
+    "fr": "Réseaux électriques US : NYISO en direct par zone, tous les réseaux via l’EIA : demande, mix, CO₂.",
+    "de": "US-Stromnetze: NYISO live pro Zone, alle US-Netze über die EIA: Verbrauch, Strommix, CO₂.",
+    "es": "Redes eléctricas de EE. UU.: NYISO en directo por zona y todas vía la EIA: demanda, mix, CO₂."
   },
   "version": "1.0.0",
   "docker_image": "ghcr.io/guim31/gladys-us-grid:1.0.0",
@@ -228,6 +228,816 @@
       "max": 100
     },
     {
+      "key": "eia_section",
+      "type": "section",
+      "label": {
+        "en": "Every US grid, through the EIA (optional)",
+        "fr": "Tous les réseaux américains, via l’EIA (facultatif)",
+        "de": "Alle US-Netze über die EIA (optional)",
+        "es": "Todas las redes de EE. UU., vía la EIA (opcional)"
+      },
+      "description": {
+        "en": "The U.S. Energy Information Administration publishes every grid hourly: demand, forecast, fuel mix. Data arrive 1 to 8 hours late, no price. Needs a free key, sent by e-mail. Not affiliated with the EIA.",
+        "fr": "L’agence américaine de l’énergie (EIA) publie chaque réseau à l’heure : demande, prévision, mix. Données en retard de 1 à 8 heures, sans prix. Clé gratuite, reçue par e-mail. Sans lien avec l’EIA.",
+        "de": "Die US-Energiebehörde EIA veröffentlicht jedes Netz stündlich: Verbrauch, Prognose, Strommix. Daten 1 bis 8 Stunden verspätet, ohne Preis. Kostenloser Schlüssel per E-Mail. Nicht mit der EIA verbunden.",
+        "es": "La agencia de energía de EE. UU. (EIA) publica cada red por horas: demanda, previsión, mix. Datos con 1 a 8 horas de retraso, sin precio. Clave gratuita, recibida por correo. Sin relación con la EIA."
+      },
+      "links": [
+        {
+          "url": "https://www.eia.gov/opendata/register.php",
+          "label": {
+            "en": "api.eia.gov",
+            "fr": "api.eia.gov",
+            "de": "api.eia.gov",
+            "es": "api.eia.gov"
+          }
+        }
+      ]
+    },
+    {
+      "key": "eia_api_key",
+      "type": "secret",
+      "label": {
+        "en": "EIA API key",
+        "fr": "Clé d’API EIA",
+        "de": "EIA-API-Schlüssel",
+        "es": "Clave de API de la EIA"
+      },
+      "description": {
+        "en": "Empty: NYISO only.",
+        "fr": "Vide : NYISO seul.",
+        "de": "Leer: nur NYISO.",
+        "es": "Vacía: solo NYISO."
+      },
+      "required": false
+    },
+    {
+      "key": "eia_regions",
+      "type": "multi_select",
+      "label": {
+        "en": "Grids to follow through the EIA",
+        "fr": "Réseaux à suivre via l’EIA",
+        "de": "Netze über die EIA",
+        "es": "Redes a seguir vía la EIA"
+      },
+      "description": {
+        "en": "One device per grid: demand, forecast, fuel mix, low-carbon share, CO₂. EIA regions first, then the grid operators.",
+        "fr": "Un appareil par réseau : demande, prévision, mix, part bas carbone, CO₂. Régions de l’EIA d’abord, puis les gestionnaires.",
+        "de": "Ein Gerät pro Netz: Verbrauch, Prognose, Strommix, CO₂-armer Anteil, CO₂. Zuerst die EIA-Regionen, dann die Netzbetreiber.",
+        "es": "Un dispositivo por red: demanda, previsión, mix, proporción baja en carbono, CO₂. Primero las regiones de la EIA, luego los operadores."
+      },
+      "required": false,
+      "options": [
+        {
+          "value": "US48",
+          "label": {
+            "en": "United States Lower 48 · US48",
+            "fr": "United States Lower 48 · US48",
+            "de": "United States Lower 48 · US48",
+            "es": "United States Lower 48 · US48"
+          }
+        },
+        {
+          "value": "CAL",
+          "label": {
+            "en": "California · CAL",
+            "fr": "California · CAL",
+            "de": "California · CAL",
+            "es": "California · CAL"
+          }
+        },
+        {
+          "value": "CAR",
+          "label": {
+            "en": "Carolinas · CAR",
+            "fr": "Carolinas · CAR",
+            "de": "Carolinas · CAR",
+            "es": "Carolinas · CAR"
+          }
+        },
+        {
+          "value": "CENT",
+          "label": {
+            "en": "Central · CENT",
+            "fr": "Central · CENT",
+            "de": "Central · CENT",
+            "es": "Central · CENT"
+          }
+        },
+        {
+          "value": "FLA",
+          "label": {
+            "en": "Florida · FLA",
+            "fr": "Florida · FLA",
+            "de": "Florida · FLA",
+            "es": "Florida · FLA"
+          }
+        },
+        {
+          "value": "MIDA",
+          "label": {
+            "en": "Mid-Atlantic · MIDA",
+            "fr": "Mid-Atlantic · MIDA",
+            "de": "Mid-Atlantic · MIDA",
+            "es": "Mid-Atlantic · MIDA"
+          }
+        },
+        {
+          "value": "MIDW",
+          "label": {
+            "en": "Midwest · MIDW",
+            "fr": "Midwest · MIDW",
+            "de": "Midwest · MIDW",
+            "es": "Midwest · MIDW"
+          }
+        },
+        {
+          "value": "NE",
+          "label": {
+            "en": "New England · NE",
+            "fr": "New England · NE",
+            "de": "New England · NE",
+            "es": "New England · NE"
+          }
+        },
+        {
+          "value": "NY",
+          "label": {
+            "en": "New York · NY",
+            "fr": "New York · NY",
+            "de": "New York · NY",
+            "es": "New York · NY"
+          }
+        },
+        {
+          "value": "NW",
+          "label": {
+            "en": "Northwest · NW",
+            "fr": "Northwest · NW",
+            "de": "Northwest · NW",
+            "es": "Northwest · NW"
+          }
+        },
+        {
+          "value": "SE",
+          "label": {
+            "en": "Southeast · SE",
+            "fr": "Southeast · SE",
+            "de": "Southeast · SE",
+            "es": "Southeast · SE"
+          }
+        },
+        {
+          "value": "SW",
+          "label": {
+            "en": "Southwest · SW",
+            "fr": "Southwest · SW",
+            "de": "Southwest · SW",
+            "es": "Southwest · SW"
+          }
+        },
+        {
+          "value": "TEN",
+          "label": {
+            "en": "Tennessee · TEN",
+            "fr": "Tennessee · TEN",
+            "de": "Tennessee · TEN",
+            "es": "Tennessee · TEN"
+          }
+        },
+        {
+          "value": "TEX",
+          "label": {
+            "en": "Texas · TEX",
+            "fr": "Texas · TEX",
+            "de": "Texas · TEX",
+            "es": "Texas · TEX"
+          }
+        },
+        {
+          "value": "YAD",
+          "label": {
+            "en": "Alcoa Power Generating (Yadkin) · YAD",
+            "fr": "Alcoa Power Generating (Yadkin) · YAD",
+            "de": "Alcoa Power Generating (Yadkin) · YAD",
+            "es": "Alcoa Power Generating (Yadkin) · YAD"
+          }
+        },
+        {
+          "value": "AZPS",
+          "label": {
+            "en": "Arizona Public Service · AZPS",
+            "fr": "Arizona Public Service · AZPS",
+            "de": "Arizona Public Service · AZPS",
+            "es": "Arizona Public Service · AZPS"
+          }
+        },
+        {
+          "value": "DEAA",
+          "label": {
+            "en": "Arlington Valley · DEAA",
+            "fr": "Arlington Valley · DEAA",
+            "de": "Arlington Valley · DEAA",
+            "es": "Arlington Valley · DEAA"
+          }
+        },
+        {
+          "value": "AECI",
+          "label": {
+            "en": "Associated Electric Cooperative · AECI",
+            "fr": "Associated Electric Cooperative · AECI",
+            "de": "Associated Electric Cooperative · AECI",
+            "es": "Associated Electric Cooperative · AECI"
+          }
+        },
+        {
+          "value": "AVRN",
+          "label": {
+            "en": "Avangrid Renewables · AVRN",
+            "fr": "Avangrid Renewables · AVRN",
+            "de": "Avangrid Renewables · AVRN",
+            "es": "Avangrid Renewables · AVRN"
+          }
+        },
+        {
+          "value": "AVA",
+          "label": {
+            "en": "Avista · AVA",
+            "fr": "Avista · AVA",
+            "de": "Avista · AVA",
+            "es": "Avista · AVA"
+          }
+        },
+        {
+          "value": "BANC",
+          "label": {
+            "en": "Balancing Authority of Northern California · BANC",
+            "fr": "Balancing Authority of Northern California · BANC",
+            "de": "Balancing Authority of Northern California · BANC",
+            "es": "Balancing Authority of Northern California · BANC"
+          }
+        },
+        {
+          "value": "BHBA",
+          "label": {
+            "en": "Black Hills Energy · BHBA",
+            "fr": "Black Hills Energy · BHBA",
+            "de": "Black Hills Energy · BHBA",
+            "es": "Black Hills Energy · BHBA"
+          }
+        },
+        {
+          "value": "BPAT",
+          "label": {
+            "en": "Bonneville Power Administration · BPAT",
+            "fr": "Bonneville Power Administration · BPAT",
+            "de": "Bonneville Power Administration · BPAT",
+            "es": "Bonneville Power Administration · BPAT"
+          }
+        },
+        {
+          "value": "CISO",
+          "label": {
+            "en": "CAISO (California ISO) · CISO",
+            "fr": "CAISO (California ISO) · CISO",
+            "de": "CAISO (California ISO) · CISO",
+            "es": "CAISO (California ISO) · CISO"
+          }
+        },
+        {
+          "value": "CHPD",
+          "label": {
+            "en": "Chelan County PUD · CHPD",
+            "fr": "Chelan County PUD · CHPD",
+            "de": "Chelan County PUD · CHPD",
+            "es": "Chelan County PUD · CHPD"
+          }
+        },
+        {
+          "value": "HST",
+          "label": {
+            "en": "City of Homestead · HST",
+            "fr": "City of Homestead · HST",
+            "de": "City of Homestead · HST",
+            "es": "City of Homestead · HST"
+          }
+        },
+        {
+          "value": "TAL",
+          "label": {
+            "en": "City of Tallahassee · TAL",
+            "fr": "City of Tallahassee · TAL",
+            "de": "City of Tallahassee · TAL",
+            "es": "City of Tallahassee · TAL"
+          }
+        },
+        {
+          "value": "SCEG",
+          "label": {
+            "en": "Dominion Energy South Carolina · SCEG",
+            "fr": "Dominion Energy South Carolina · SCEG",
+            "de": "Dominion Energy South Carolina · SCEG",
+            "es": "Dominion Energy South Carolina · SCEG"
+          }
+        },
+        {
+          "value": "DOPD",
+          "label": {
+            "en": "Douglas County PUD · DOPD",
+            "fr": "Douglas County PUD · DOPD",
+            "de": "Douglas County PUD · DOPD",
+            "es": "Douglas County PUD · DOPD"
+          }
+        },
+        {
+          "value": "DUK",
+          "label": {
+            "en": "Duke Energy Carolinas · DUK",
+            "fr": "Duke Energy Carolinas · DUK",
+            "de": "Duke Energy Carolinas · DUK",
+            "es": "Duke Energy Carolinas · DUK"
+          }
+        },
+        {
+          "value": "FPC",
+          "label": {
+            "en": "Duke Energy Florida · FPC",
+            "fr": "Duke Energy Florida · FPC",
+            "de": "Duke Energy Florida · FPC",
+            "es": "Duke Energy Florida · FPC"
+          }
+        },
+        {
+          "value": "CPLE",
+          "label": {
+            "en": "Duke Energy Progress East · CPLE",
+            "fr": "Duke Energy Progress East · CPLE",
+            "de": "Duke Energy Progress East · CPLE",
+            "es": "Duke Energy Progress East · CPLE"
+          }
+        },
+        {
+          "value": "CPLW",
+          "label": {
+            "en": "Duke Energy Progress West · CPLW",
+            "fr": "Duke Energy Progress West · CPLW",
+            "de": "Duke Energy Progress West · CPLW",
+            "es": "Duke Energy Progress West · CPLW"
+          }
+        },
+        {
+          "value": "EPE",
+          "label": {
+            "en": "El Paso Electric · EPE",
+            "fr": "El Paso Electric · EPE",
+            "de": "El Paso Electric · EPE",
+            "es": "El Paso Electric · EPE"
+          }
+        },
+        {
+          "value": "EEI",
+          "label": {
+            "en": "Electric Energy, Inc. · EEI",
+            "fr": "Electric Energy, Inc. · EEI",
+            "de": "Electric Energy, Inc. · EEI",
+            "es": "Electric Energy, Inc. · EEI"
+          }
+        },
+        {
+          "value": "ERCO",
+          "label": {
+            "en": "ERCOT (Texas) · ERCO",
+            "fr": "ERCOT (Texas) · ERCO",
+            "de": "ERCOT (Texas) · ERCO",
+            "es": "ERCOT (Texas) · ERCO"
+          }
+        },
+        {
+          "value": "FMPP",
+          "label": {
+            "en": "Florida Municipal Power Pool · FMPP",
+            "fr": "Florida Municipal Power Pool · FMPP",
+            "de": "Florida Municipal Power Pool · FMPP",
+            "es": "Florida Municipal Power Pool · FMPP"
+          }
+        },
+        {
+          "value": "FPL",
+          "label": {
+            "en": "Florida Power & Light · FPL",
+            "fr": "Florida Power & Light · FPL",
+            "de": "Florida Power & Light · FPL",
+            "es": "Florida Power & Light · FPL"
+          }
+        },
+        {
+          "value": "GVL",
+          "label": {
+            "en": "Gainesville Regional Utilities · GVL",
+            "fr": "Gainesville Regional Utilities · GVL",
+            "de": "Gainesville Regional Utilities · GVL",
+            "es": "Gainesville Regional Utilities · GVL"
+          }
+        },
+        {
+          "value": "GCPD",
+          "label": {
+            "en": "Grant County PUD · GCPD",
+            "fr": "Grant County PUD · GCPD",
+            "de": "Grant County PUD · GCPD",
+            "es": "Grant County PUD · GCPD"
+          }
+        },
+        {
+          "value": "GRID",
+          "label": {
+            "en": "Gridforce Energy Management · GRID",
+            "fr": "Gridforce Energy Management · GRID",
+            "de": "Gridforce Energy Management · GRID",
+            "es": "Gridforce Energy Management · GRID"
+          }
+        },
+        {
+          "value": "GLHB",
+          "label": {
+            "en": "GridLiance · GLHB",
+            "fr": "GridLiance · GLHB",
+            "de": "GridLiance · GLHB",
+            "es": "GridLiance · GLHB"
+          }
+        },
+        {
+          "value": "GRIF",
+          "label": {
+            "en": "Griffith Energy · GRIF",
+            "fr": "Griffith Energy · GRIF",
+            "de": "Griffith Energy · GRIF",
+            "es": "Griffith Energy · GRIF"
+          }
+        },
+        {
+          "value": "IPCO",
+          "label": {
+            "en": "Idaho Power · IPCO",
+            "fr": "Idaho Power · IPCO",
+            "de": "Idaho Power · IPCO",
+            "es": "Idaho Power · IPCO"
+          }
+        },
+        {
+          "value": "IID",
+          "label": {
+            "en": "Imperial Irrigation District · IID",
+            "fr": "Imperial Irrigation District · IID",
+            "de": "Imperial Irrigation District · IID",
+            "es": "Imperial Irrigation District · IID"
+          }
+        },
+        {
+          "value": "ISNE",
+          "label": {
+            "en": "ISO New England · ISNE",
+            "fr": "ISO New England · ISNE",
+            "de": "ISO New England · ISNE",
+            "es": "ISO New England · ISNE"
+          }
+        },
+        {
+          "value": "JEA",
+          "label": {
+            "en": "JEA · JEA",
+            "fr": "JEA · JEA",
+            "de": "JEA · JEA",
+            "es": "JEA · JEA"
+          }
+        },
+        {
+          "value": "LGEE",
+          "label": {
+            "en": "LG&E and KU · LGEE",
+            "fr": "LG&E and KU · LGEE",
+            "de": "LG&E and KU · LGEE",
+            "es": "LG&E and KU · LGEE"
+          }
+        },
+        {
+          "value": "LDWP",
+          "label": {
+            "en": "Los Angeles Department of Water and Power · LDWP",
+            "fr": "Los Angeles Department of Water and Power · LDWP",
+            "de": "Los Angeles Department of Water and Power · LDWP",
+            "es": "Los Angeles Department of Water and Power · LDWP"
+          }
+        },
+        {
+          "value": "MISO",
+          "label": {
+            "en": "MISO (Midcontinent ISO) · MISO",
+            "fr": "MISO (Midcontinent ISO) · MISO",
+            "de": "MISO (Midcontinent ISO) · MISO",
+            "es": "MISO (Midcontinent ISO) · MISO"
+          }
+        },
+        {
+          "value": "GWA",
+          "label": {
+            "en": "NaturEner Power Watch · GWA",
+            "fr": "NaturEner Power Watch · GWA",
+            "de": "NaturEner Power Watch · GWA",
+            "es": "NaturEner Power Watch · GWA"
+          }
+        },
+        {
+          "value": "WWA",
+          "label": {
+            "en": "NaturEner Wind Watch · WWA",
+            "fr": "NaturEner Wind Watch · WWA",
+            "de": "NaturEner Wind Watch · WWA",
+            "es": "NaturEner Wind Watch · WWA"
+          }
+        },
+        {
+          "value": "NEVP",
+          "label": {
+            "en": "Nevada Power · NEVP",
+            "fr": "Nevada Power · NEVP",
+            "de": "Nevada Power · NEVP",
+            "es": "Nevada Power · NEVP"
+          }
+        },
+        {
+          "value": "HGMA",
+          "label": {
+            "en": "New Harquahala Generating Company · HGMA",
+            "fr": "New Harquahala Generating Company · HGMA",
+            "de": "New Harquahala Generating Company · HGMA",
+            "es": "New Harquahala Generating Company · HGMA"
+          }
+        },
+        {
+          "value": "NSB",
+          "label": {
+            "en": "New Smyrna Beach Utilities · NSB",
+            "fr": "New Smyrna Beach Utilities · NSB",
+            "de": "New Smyrna Beach Utilities · NSB",
+            "es": "New Smyrna Beach Utilities · NSB"
+          }
+        },
+        {
+          "value": "NWMT",
+          "label": {
+            "en": "NorthWestern Energy · NWMT",
+            "fr": "NorthWestern Energy · NWMT",
+            "de": "NorthWestern Energy · NWMT",
+            "es": "NorthWestern Energy · NWMT"
+          }
+        },
+        {
+          "value": "NYIS",
+          "label": {
+            "en": "NYISO (New York ISO) · NYIS",
+            "fr": "NYISO (New York ISO) · NYIS",
+            "de": "NYISO (New York ISO) · NYIS",
+            "es": "NYISO (New York ISO) · NYIS"
+          }
+        },
+        {
+          "value": "PACE",
+          "label": {
+            "en": "PacifiCorp East · PACE",
+            "fr": "PacifiCorp East · PACE",
+            "de": "PacifiCorp East · PACE",
+            "es": "PacifiCorp East · PACE"
+          }
+        },
+        {
+          "value": "PACW",
+          "label": {
+            "en": "PacifiCorp West · PACW",
+            "fr": "PacifiCorp West · PACW",
+            "de": "PacifiCorp West · PACW",
+            "es": "PacifiCorp West · PACW"
+          }
+        },
+        {
+          "value": "PJM",
+          "label": {
+            "en": "PJM Interconnection · PJM",
+            "fr": "PJM Interconnection · PJM",
+            "de": "PJM Interconnection · PJM",
+            "es": "PJM Interconnection · PJM"
+          }
+        },
+        {
+          "value": "PGE",
+          "label": {
+            "en": "Portland General Electric · PGE",
+            "fr": "Portland General Electric · PGE",
+            "de": "Portland General Electric · PGE",
+            "es": "Portland General Electric · PGE"
+          }
+        },
+        {
+          "value": "AEC",
+          "label": {
+            "en": "PowerSouth Energy Cooperative · AEC",
+            "fr": "PowerSouth Energy Cooperative · AEC",
+            "de": "PowerSouth Energy Cooperative · AEC",
+            "es": "PowerSouth Energy Cooperative · AEC"
+          }
+        },
+        {
+          "value": "PSCO",
+          "label": {
+            "en": "Public Service Company of Colorado · PSCO",
+            "fr": "Public Service Company of Colorado · PSCO",
+            "de": "Public Service Company of Colorado · PSCO",
+            "es": "Public Service Company of Colorado · PSCO"
+          }
+        },
+        {
+          "value": "PNM",
+          "label": {
+            "en": "Public Service Company of New Mexico · PNM",
+            "fr": "Public Service Company of New Mexico · PNM",
+            "de": "Public Service Company of New Mexico · PNM",
+            "es": "Public Service Company of New Mexico · PNM"
+          }
+        },
+        {
+          "value": "PSEI",
+          "label": {
+            "en": "Puget Sound Energy · PSEI",
+            "fr": "Puget Sound Energy · PSEI",
+            "de": "Puget Sound Energy · PSEI",
+            "es": "Puget Sound Energy · PSEI"
+          }
+        },
+        {
+          "value": "SRP",
+          "label": {
+            "en": "Salt River Project · SRP",
+            "fr": "Salt River Project · SRP",
+            "de": "Salt River Project · SRP",
+            "es": "Salt River Project · SRP"
+          }
+        },
+        {
+          "value": "SC",
+          "label": {
+            "en": "Santee Cooper · SC",
+            "fr": "Santee Cooper · SC",
+            "de": "Santee Cooper · SC",
+            "es": "Santee Cooper · SC"
+          }
+        },
+        {
+          "value": "SCL",
+          "label": {
+            "en": "Seattle City Light · SCL",
+            "fr": "Seattle City Light · SCL",
+            "de": "Seattle City Light · SCL",
+            "es": "Seattle City Light · SCL"
+          }
+        },
+        {
+          "value": "SEC",
+          "label": {
+            "en": "Seminole Electric Cooperative · SEC",
+            "fr": "Seminole Electric Cooperative · SEC",
+            "de": "Seminole Electric Cooperative · SEC",
+            "es": "Seminole Electric Cooperative · SEC"
+          }
+        },
+        {
+          "value": "SIKE",
+          "label": {
+            "en": "Sikeston Board of Municipal Utilities · SIKE",
+            "fr": "Sikeston Board of Municipal Utilities · SIKE",
+            "de": "Sikeston Board of Municipal Utilities · SIKE",
+            "es": "Sikeston Board of Municipal Utilities · SIKE"
+          }
+        },
+        {
+          "value": "SEPA",
+          "label": {
+            "en": "Southeastern Power Administration · SEPA",
+            "fr": "Southeastern Power Administration · SEPA",
+            "de": "Southeastern Power Administration · SEPA",
+            "es": "Southeastern Power Administration · SEPA"
+          }
+        },
+        {
+          "value": "SOCO",
+          "label": {
+            "en": "Southern Company · SOCO",
+            "fr": "Southern Company · SOCO",
+            "de": "Southern Company · SOCO",
+            "es": "Southern Company · SOCO"
+          }
+        },
+        {
+          "value": "SPA",
+          "label": {
+            "en": "Southwestern Power Administration · SPA",
+            "fr": "Southwestern Power Administration · SPA",
+            "de": "Southwestern Power Administration · SPA",
+            "es": "Southwestern Power Administration · SPA"
+          }
+        },
+        {
+          "value": "SWPP",
+          "label": {
+            "en": "SPP (Southwest Power Pool) · SWPP",
+            "fr": "SPP (Southwest Power Pool) · SWPP",
+            "de": "SPP (Southwest Power Pool) · SWPP",
+            "es": "SPP (Southwest Power Pool) · SWPP"
+          }
+        },
+        {
+          "value": "SWPW",
+          "label": {
+            "en": "SPP West · SWPW",
+            "fr": "SPP West · SWPW",
+            "de": "SPP West · SWPW",
+            "es": "SPP West · SWPW"
+          }
+        },
+        {
+          "value": "TPWR",
+          "label": {
+            "en": "Tacoma Power · TPWR",
+            "fr": "Tacoma Power · TPWR",
+            "de": "Tacoma Power · TPWR",
+            "es": "Tacoma Power · TPWR"
+          }
+        },
+        {
+          "value": "TEC",
+          "label": {
+            "en": "Tampa Electric · TEC",
+            "fr": "Tampa Electric · TEC",
+            "de": "Tampa Electric · TEC",
+            "es": "Tampa Electric · TEC"
+          }
+        },
+        {
+          "value": "TVA",
+          "label": {
+            "en": "Tennessee Valley Authority · TVA",
+            "fr": "Tennessee Valley Authority · TVA",
+            "de": "Tennessee Valley Authority · TVA",
+            "es": "Tennessee Valley Authority · TVA"
+          }
+        },
+        {
+          "value": "TEPC",
+          "label": {
+            "en": "Tucson Electric Power · TEPC",
+            "fr": "Tucson Electric Power · TEPC",
+            "de": "Tucson Electric Power · TEPC",
+            "es": "Tucson Electric Power · TEPC"
+          }
+        },
+        {
+          "value": "TIDC",
+          "label": {
+            "en": "Turlock Irrigation District · TIDC",
+            "fr": "Turlock Irrigation District · TIDC",
+            "de": "Turlock Irrigation District · TIDC",
+            "es": "Turlock Irrigation District · TIDC"
+          }
+        },
+        {
+          "value": "WALC",
+          "label": {
+            "en": "WAPA Desert Southwest · WALC",
+            "fr": "WAPA Desert Southwest · WALC",
+            "de": "WAPA Desert Southwest · WALC",
+            "es": "WAPA Desert Southwest · WALC"
+          }
+        },
+        {
+          "value": "WACM",
+          "label": {
+            "en": "WAPA Rocky Mountain · WACM",
+            "fr": "WAPA Rocky Mountain · WACM",
+            "de": "WAPA Rocky Mountain · WACM",
+            "es": "WAPA Rocky Mountain · WACM"
+          }
+        },
+        {
+          "value": "WAUW",
+          "label": {
+            "en": "WAPA Upper Great Plains West · WAUW",
+            "fr": "WAPA Upper Great Plains West · WAUW",
+            "de": "WAPA Upper Great Plains West · WAUW",
+            "es": "WAPA Upper Great Plains West · WAUW"
+          }
+        }
+      ]
+    },
+    {
       "key": "language",
       "type": "select",
       "label": {
@@ -288,16 +1098,16 @@
     {
       "key": "test_connection",
       "label": {
-        "en": "Test the connection to NYISO",
-        "fr": "Tester la connexion à NYISO",
-        "de": "Verbindung zu NYISO testen",
-        "es": "Probar la conexión con NYISO"
+        "en": "Test the connection to NYISO and the EIA",
+        "fr": "Tester la connexion à NYISO et à l'EIA",
+        "de": "Verbindung zu NYISO und EIA testen",
+        "es": "Probar la conexión con NYISO y la EIA"
       },
       "description": {
-        "en": "Reads the prices, the fuel mix and the load now.",
-        "fr": "Lit tout de suite les prix, le mix et la consommation.",
-        "de": "Liest sofort Preise, Strommix und Verbrauch.",
-        "es": "Lee ahora los precios, el mix y el consumo."
+        "en": "Reads the prices, the fuel mix and the load now, and the EIA grids if any.",
+        "fr": "Lit tout de suite les prix, le mix et la consommation, et les réseaux EIA s'il y en a.",
+        "de": "Liest sofort Preise, Strommix und Verbrauch, und die EIA-Netze, falls vorhanden.",
+        "es": "Lee ahora los precios, el mix y el consumo, y las redes EIA si las hay."
       },
       "timeout_seconds": 60
     }

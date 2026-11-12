@@ -1,4 +1,4 @@
-# NYISO New York Grid
+# US Power Grids
 
 Live figures of the New York power grid in Gladys, from the public files of
 NYISO, the operator of the grid of New York State: the real-time price of
@@ -7,6 +7,13 @@ an estimated CO₂ intensity.
 
 Developed without a New York electricity account, the data being public: feedback welcome.
 Not affiliated with NYISO.
+
+And **every US grid** too, through the open data of the
+EIA (U.S. Energy Information Administration): demand, demand forecast, fuel
+mix, low-carbon share and estimated CO₂ of ERCOT, PJM, MISO, SPP, CAISO,
+ISO New England, the Southeast, the Northwest, Florida… hourly, with a free
+key. Developed without an account at these operators: feedback welcome.
+Not affiliated with the EIA.
 
 ## What you get
 
@@ -17,6 +24,11 @@ Not affiliated with NYISO.
   its load.
 - Four scene triggers (price above, price below, negative price, low-carbon
   share above) and a dashboard widget.
+- With a free EIA key, one device per **EIA grid** you follow (about
+  seventy balancing authorities and EIA regions): demand, forecast of the
+  hour in progress and peak forecast of the next 24 hours, low-carbon and
+  renewable shares, estimated CO₂, the share of gas, coal, nuclear, wind,
+  solar, hydro and other sources, and the time of the figures.
 
 **Prices are wholesale prices** of the NYISO real-time market, not your
 electricity rate: your supplier adds delivery, taxes and its margin. They
@@ -27,6 +39,10 @@ still show when power is cheap or tight.
 - Gladys 5.3.0 or later.
 - Internet access from Gladys (the files are read on `mis.nyiso.com`). No
   account, no key.
+
+- For the EIA grids only: a free API key, asked on
+  [eia.gov/opendata](https://www.eia.gov/opendata/register.php) with an
+  e-mail address (no paid account). Without a key, NYISO alone.
 
 ## Installation
 
@@ -44,6 +60,11 @@ the repository: `https://github.com/guim31/gladys-us-grid`.
 3. **Language of the names**: the language of the feature names (frozen when
    a device is added), of the summary and of the test message.
 4. Save, then add the devices from the **Discovery** tab.
+
+5. **EIA** (optional): paste the **EIA API key**, pick the **grids to follow
+   through the EIA** (the EIA regions first, such as Texas or Southeast, then
+   the operators by name, such as ERCOT, PJM, MISO), save, and add their
+   devices from the **Discovery** tab.
 
 ## Devices
 
@@ -65,6 +86,21 @@ neighboring grids are not in the NYISO fuel mix.
 
 `NYISO <zone> (<letter>)`: the **real-time price** of the zone (LBMP, $/MWh,
 five-minute interval) and the **load** of the zone (kW).
+
+### EIA grid
+
+`<grid> (EIA)`, one per grid followed:
+
+| Feature                    | Unit      | Note                                                   |
+| -------------------------- | --------- | ------------------------------------------------------ |
+| Demand                     | kW        | the latest hour published                              |
+| Demand forecast, this hour | kW        | the EIA day-ahead forecast of the hour in progress     |
+| Peak forecast, next 24 h   | kW        | the highest hour of the forecast                       |
+| CO₂ intensity (estimated)  | g CO₂/kWh | from the fuel mix, see below                           |
+| Low-carbon share           | %         | nuclear, hydro, wind, solar, geothermal                |
+| Renewable share            | %         | hydro, wind, solar, geothermal                         |
+| Share of each source       | %         | natural gas, coal, nuclear, wind, solar, hydro, other  |
+| Data time (EIA)            | text      | "Demand 11/12, 07:00 · mix 11/12, 01:00" (Gladys time) |
 
 ## Scenes
 
@@ -95,6 +131,10 @@ The low-carbon share rises above its threshold: a good time to run
 appliances. Variables: `low_carbon_share`, `renewable_share`,
 `carbon_intensity`, `threshold`.
 
+For an EIA grid, use the device's own features in a scene ("Low-carbon
+share above 60 %", then start the washing machine): its figures change once
+an hour, so a threshold on a feature does not fire again and again.
+
 ## Dashboard
 
 ### New York power grid widget
@@ -106,7 +146,7 @@ the fuel mix as bars. The chart and the mix each have a setting to hide them.
 
 ## Actions
 
-**Test the connection to NYISO** reads the prices, the fuel mix and the load
+**Test the connection to NYISO and the EIA** reads the prices, the fuel mix and the load
 now, and answers with the price of your first zone.
 
 ## Data and limits
@@ -124,10 +164,20 @@ now, and answers with the price of your first zone.
   for gas and dual fuel, 650 for other fossil fuels (oil), 230 for other
   renewables (mostly biomass), 24 hydro, 12 nuclear, 11 wind. Imports are
   not counted.
-- Only NYISO for now. California is covered by the
+- **EIA grids**: Form EIA-930 (Hourly Electric Grid Monitor), API v2 of the
+  EIA. Hourly figures, published **one to two hours late for the demand,
+  four to eight hours late for the fuel mix** (more for some small
+  authorities): the "Data time" feature says which hour you see. Read once
+  an hour in two grouped requests (demand and mix) for every grid followed,
+  well within the free key's limits. A demand older than 6 hours or a mix
+  older than 24 hours is not published. **No price**: the EIA publishes no
+  hourly price. Same emission factors as above, plus 820 g/kWh for coal, 45
+  solar, 38 geothermal, 650 oil, and 700 for "other" (unknown mix); battery
+  and pumped storage are left out (they move energy, they do not produce
+  it).
+- California in real time: the
   [CAISO integration](https://github.com/LM1LC3N7/gladys-caiso)
-  (gladys-caiso). ISO New England, MISO, SPP, PJM and ERCOT publish no
-  open file that can be read without an account or a browser.
+  (gladys-caiso). The EIA covers it hourly too.
 
 ## Troubleshooting
 
@@ -137,8 +187,18 @@ now, and answers with the price of your first zone.
   connection to NYISO**.
 - Detailed logs: `LOG_LEVEL=debug` on the integration.
 
+- **"The EIA refuses the API key"**: check the key pasted in the
+  configuration (the e-mail of the EIA gives it).
+- **"The EIA cannot be read"**: the EIA did not answer, or the key's limit is
+  reached; the integration tries again every hour.
+- An EIA feature without value: that grid does not publish it (a forecast,
+  solar…), or its figures are too old.
+
 ## Credits
 
 Data: NYISO (New York Independent System Operator), public market and
 operations data. Emission factors: IPCC AR5 (2014), via Electricity Maps.
 Code under the Apache 2.0 license. Not affiliated with NYISO.
+
+EIA grids: U.S. Energy Information Administration, Form EIA-930, public
+domain. Not affiliated with the EIA.
