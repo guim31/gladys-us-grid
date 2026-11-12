@@ -18,7 +18,7 @@ gladys.handleShutdown((signal) => {
   return app.stop(); // stops the timer, waits for the last write under /data
 });
 
-logger.info('Starting the NYISO New York Grid integration...');
+logger.info('Starting the US Power Grids integration...');
 gladys.connect().catch((err) => {
   logger.error('Initial connection failed', err);
   process.exit(1);
