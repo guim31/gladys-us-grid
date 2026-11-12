@@ -10,6 +10,8 @@ the notes of the version's GitHub Release.
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-11-12
+
 ### Added
 
 - Every US power grid, hourly, through the open data of the EIA (U.S. Energy
@@ -45,5 +47,6 @@ the notes of the version's GitHub Release.
 - Texts, feature names and documentation in English, French, German and
   Spanish.
 
-[Unreleased]: https://github.com/guim31/gladys-us-grid/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/guim31/gladys-us-grid/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/guim31/gladys-us-grid/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/guim31/gladys-us-grid/releases/tag/v1.0.0

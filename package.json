@@ -1,6 +1,6 @@
 {
   "name": "gladys-us-grid",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "description": "Gladys Assistant integration: US power grids, NYISO live by zone and every US grid through the EIA: demand, fuel mix, low-carbon share, CO2.",
   "type": "module",
