@@ -14,7 +14,8 @@ import { createFakeGladys } from '@gladysassistant/integration-sdk/testing';
 import { registerHandlers } from '../../src/app.js';
 import { Store } from '../../src/store.js';
 import { PRICE_URL, fuelMixUrl, loadUrl } from '../../src/nyiso.js';
-import { gridIds, zoneIds } from '../../src/devices.js';
+import { eiaIds, gridIds, zoneIds } from '../../src/devices.js';
+import { EIA_URL } from '../../src/eia.js';
 
 // The integration logs its lifecycle; keep the test output readable.
 process.env.LOG_LEVEL ??= 'silent';
@@ -33,6 +34,43 @@ export const START = Date.UTC(2026, 10, 7, 23, 28, 0);
 export const PRICES_AT = '2026-11-07T23:25:00.000Z';
 export const NYC = '61761';
 export const LONG_ISLAND = '61762';
+
+/**
+ * Real EIA answers of 2026-11-12 13:22 UTC (ERCO, PJM, MISO, AVA), moved to
+ * the clock of the NYISO files: every period shifted by a whole number of
+ * hours, so the fixtures stay consistent with START (13:22 → 23:22 UTC).
+ */
+export const EIA_SHIFT_MS = Date.UTC(2026, 10, 7, 23) - Date.UTC(2026, 10, 12, 13);
+const shiftPeriod = (period) =>
+  new Date(Date.parse(`${period}:00:00Z`) + EIA_SHIFT_MS).toISOString().slice(0, 13);
+export const eiaFixture = (name) => {
+  const body = JSON.parse(fixture(name));
+  for (const row of body.response.data) {
+    row.period = shiftPeriod(row.period);
+  }
+  return body;
+};
+export const EIA_REGION_JSON = eiaFixture('eia-region-data.json');
+export const EIA_FUEL_JSON = eiaFixture('eia-fuel-type-data.json');
+export const EIA_KEY = 'TEST-KEY-0123456789';
+
+export const json = (status, body) =>
+  new Response(JSON.stringify(body), {
+    status,
+    headers: { 'content-type': 'application/json' },
+  });
+
+/** The answer of the fake EIA to a URL: the rows of the respondents asked, one page. */
+export function eiaAnswer(url) {
+  const query = new URL(url).searchParams;
+  if (query.get('api_key') !== EIA_KEY) {
+    return json(403, JSON.parse(fixture('eia-invalid-key.json')));
+  }
+  const regions = query.getAll('facets[respondent][]');
+  const source = url.includes('/region-data/') ? EIA_REGION_JSON : EIA_FUEL_JSON;
+  const data = source.response.data.filter((row) => regions.includes(row.respondent));
+  return json(200, { response: { total: String(data.length), data } });
+}
 
 /** A manual clock. */
 export function createClock(start = START) {
@@ -75,10 +113,14 @@ export function createFakeNyiso() {
     prices: () => csv(200, PRICES_CSV),
     mix: (day) => (day === DAY ? csv(200, MIX_CSV) : csv(404, 'Not Found')),
     load: (day) => (day === DAY ? csv(200, LOAD_CSV) : csv(404, 'Not Found')),
+    eia: (url) => eiaAnswer(url),
     /** @type {typeof fetch} */
     fetch: async (url, init = {}) => {
       const request = { url: String(url), headers: init.headers ?? {} };
       nyiso.calls.push(request);
+      if (request.url.startsWith(EIA_URL)) {
+        return nyiso.eia(request.url);
+      }
       if (request.url === PRICE_URL) {
         return nyiso.prices();
       }
@@ -93,9 +135,11 @@ export function createFakeNyiso() {
     },
     count: (kind) =>
       nyiso.calls.filter((c) =>
-        kind === 'prices'
-          ? c.url === PRICE_URL
-          : c.url.includes(kind === 'mix' ? 'rtfuelmix' : 'pal'),
+        kind === 'eia'
+          ? c.url.startsWith(EIA_URL)
+          : kind === 'prices'
+            ? c.url === PRICE_URL
+            : c.url.includes(kind === 'mix' ? 'rtfuelmix' : 'pal'),
       ).length,
   };
   return nyiso;
@@ -132,6 +176,7 @@ export async function createWorld({
 
 export const gridId = (gladys) => gridIds(gladys);
 export const zoneId = (gladys, ptid) => zoneIds(gladys, ptid);
+export const eiaId = (gladys, code) => eiaIds(gladys, code);
 
 /** Add every discovered device in Gladys, as the user would. */
 export async function createAll(world) {

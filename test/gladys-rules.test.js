@@ -16,6 +16,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { discoveredDevices } from './helpers/world.js';
 import { ZONE_IDS } from '../src/zones.js';
+import { EIA_REGION_CODES } from '../src/eia-regions.js';
 
 const table = JSON.parse(
   await readFile(new URL('./fixtures/gladys-feature-table.json', import.meta.url), 'utf8'),
@@ -29,6 +30,16 @@ const scenarios = [
   { label: 'English names', config: { language: 'en', zones }, count: 12 },
   { label: 'German names', config: { language: 'de', zones }, count: 12 },
   { label: 'Spanish names', config: { language: 'es', zones }, count: 12 },
+  {
+    label: 'every EIA grid',
+    config: { language: 'en', zones, eia_api_key: 'TEST', eia_regions: EIA_REGION_CODES },
+    count: 12 + EIA_REGION_CODES.length,
+  },
+  {
+    label: 'EIA grids without a key',
+    config: { language: 'fr', eia_regions: ['ERCO'] },
+    count: 1,
+  },
 ];
 
 for (const scenario of scenarios) {

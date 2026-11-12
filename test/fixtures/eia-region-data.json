@@ -1,0 +1,2241 @@
+{
+  "response": {
+    "total": "248",
+    "dateFormat": "YYYY-MM-DD\"T\"HH24",
+    "frequency": "hourly",
+    "data": [
+      {
+        "period": "2026-11-13T06",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "46555",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-13T05",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "48726",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-13T05",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "71698",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-13T05",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "83092",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-13T04",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "50749",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-13T04",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "74595",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-13T04",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "85343",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-13T03",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "52307",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-13T03",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "77110",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-13T03",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "88737",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-13T02",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "53486",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-13T02",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "78757",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-13T02",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "92214",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-13T01",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "54573",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-13T01",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "79746",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-13T01",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "94287",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-13T00",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "54994",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-13T00",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "79806",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-13T00",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "95043",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T23",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "55415",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T23",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "78042",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T23",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "94887",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T22",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "55564",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T22",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "76266",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T22",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "93786",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T21",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "54859",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T21",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "75703",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T21",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "91191",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T20",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "53753",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T20",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "75757",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T20",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "89493",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T19",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "52573",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T19",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "75878",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T19",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "89018",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T18",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "51561",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T18",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "75895",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T18",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "88960",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T17",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "50738",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T17",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "76070",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T17",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "89068",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T16",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "49960",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T16",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "76235",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T16",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "89493",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T15",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "49369",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T15",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "76361",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T15",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "90338",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T14",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "48556",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T14",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "76160",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T14",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "91341",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T13",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "47551",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T13",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "74282",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T13",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "92604",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T12",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "1101",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T12",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "44805",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T12",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "44849",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T12",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "70218",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T12",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "70218",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T12",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "88940",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T12",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "92363",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T11",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "1099",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T11",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "43241",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T11",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "43352",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T11",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "68191",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T11",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "66321",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T11",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "82972",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T11",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "88459",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T10",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "1108",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T10",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "42625",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T10",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "43026",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T10",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "66534",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T10",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "64326",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T10",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "80824",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T10",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "82183",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T09",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "1134",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T09",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "42830",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T09",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "43158",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T09",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "66021",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T09",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "64798",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T09",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "79477",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T09",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "78481",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T08",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "1180",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T08",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "1045",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T08",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "43563",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T08",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "43954",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T08",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "66489",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T08",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "64641",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T08",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "79514",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T08",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "77053",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T07",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "1227",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T07",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "1104",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T07",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "44448",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T07",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "45338",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T07",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "67642",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T07",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "65628",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T07",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "80255",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T07",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "77206",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T06",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "1344",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T06",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "1179",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T06",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "45090",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T06",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "47608",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T06",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "69057",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T06",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "68139",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T06",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "81179",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T06",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "78208",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T05",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "1388",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T05",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "1261",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T05",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "47029",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T05",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "49986",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T05",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "69101",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T05",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "69624",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T05",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "83280",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T05",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "79952",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "1434",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "1295",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "49457",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "52387",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "71656",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "72519",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "86420",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "82846",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "1470",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "1274",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "51807",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "54026",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "73955",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "75089",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "89951",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "86539",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T02",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "1488",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T02",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "1257",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T02",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "53192",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T02",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "55220",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T02",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "75436",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T02",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "76269",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T02",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "92912",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T02",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "90294",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T01",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "1443",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T01",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "1402",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T01",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "54187",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T01",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "56293",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T01",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "76937",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T01",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "77472",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T01",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "94629",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T01",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "92805",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T00",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "1355",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T00",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "1328",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T00",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "54451",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T00",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "56602",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T00",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "77054",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T00",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "77979",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T00",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "95802",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T00",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "94174",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T23",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "1344",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T23",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "1281",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T23",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "55599",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T23",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "56678",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T23",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "75159",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T23",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "76794",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T23",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "95378",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T23",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "94236",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T22",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "1355",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T22",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "1277",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T22",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "56150",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T22",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "56962",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T22",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "73375",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T22",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "75424",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T22",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "91909",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T22",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "93288",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T21",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "1374",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T21",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "1275",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T21",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "55577",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T21",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "56510",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T21",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "73741",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T21",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "75600",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T21",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "90121",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T21",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "90110",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T20",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "1355",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T20",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "1254",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T20",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "54586",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T20",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "55389",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T20",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "73643",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T20",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "75423",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T20",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "90399",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T20",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "87972",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T19",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "1372",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T19",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "1247",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T19",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "53608",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T19",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "54207",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T19",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "73507",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T19",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "75131",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T19",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "90775",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T19",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "86949",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T18",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "1381",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T18",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "1266",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T18",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "52467",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T18",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "52988",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T18",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "72939",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T18",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "74856",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T18",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "89901",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T18",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "86675",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T17",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "1384",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T17",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "1298",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T17",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "51441",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T17",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "51901",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T17",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "72426",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T17",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "74683",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T17",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "90045",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T17",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "86592",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T16",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "1031",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T16",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "1327",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T16",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "50427",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T16",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "50860",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T16",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "72679",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T16",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "74745",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T16",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "90671",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T16",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "87064",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T15",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "1103",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T15",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "1275",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T15",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "49307",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T15",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "49845",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T15",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "72867",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T15",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "75088",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T15",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "91156",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T15",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "88508",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T14",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "982",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T14",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "1152",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T14",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "48115",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T14",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "48867",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T14",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "72625",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T14",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "75140",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T14",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "92009",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T14",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "90560",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T13",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "896",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T13",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "1035",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T13",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "47027",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T13",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "47798",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T13",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "70308",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T13",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "73430",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T13",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "93027",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T13",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "93233",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T12",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "862",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T12",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "987",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T12",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "44511",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T12",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "45102",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T12",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "66266",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T12",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "68838",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T12",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "D",
+        "type-name": "Demand",
+        "value": "89982",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-11T12",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "type": "DF",
+        "type-name": "Day-ahead demand forecast",
+        "value": "93959",
+        "value-units": "megawatthours"
+      }
+    ]
+  }
+}

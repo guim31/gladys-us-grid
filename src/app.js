@@ -10,6 +10,8 @@
 //   - reads the fuel mix and the load every five minutes, when a device is
 //     added, the low-carbon trigger has a threshold, or the widget was shown;
 //   - fires the triggers whose threshold a new reading crossed;
+//   - reads the EIA grids every hour (two grouped requests), when one of their
+//     devices is added: the EIA publishes hourly, one to eight hours late;
 //   - publishes the states that changed, each value sent again at least every
 //     6 hours (heartbeat). Nothing is published from a stale or failed read.
 // The core's onPoll, called every minute for the devices it does poll, only
@@ -23,6 +25,9 @@ import {
   MIX_MAX_AGE_MS,
   PRICE_MAX_AGE_MS,
   buildDevices,
+  eiaIds,
+  eiaRegions,
+  eiaStates,
   fresh,
   gridIds,
   gridStates,
@@ -30,6 +35,7 @@ import {
   zoneStates,
 } from './devices.js';
 import { MESSAGES, TEXT, pick } from './i18n.js';
+import { fetchEia, isKeyRefused } from './eia.js';
 import { createIssueLog } from './issues.js';
 import { fetchFuelMix, fetchLoad, fetchPrices } from './nyiso.js';
 import { Store } from './store.js';
@@ -49,6 +55,10 @@ const logger = createLogger({ name: 'us-grid' });
 export const TICK_MS = 60 * 1000;
 export const PERIOD_MS = 5 * 60 * 1000;
 export const HEARTBEAT_MS = 6 * 60 * 60 * 1000;
+/** The EIA publishes hourly: one read an hour. */
+export const EIA_PERIOD_MS = 60 * 60 * 1000;
+/** A device just added reads the EIA at once, but not twice within this. */
+const EIA_MIN_GAP_MS = 5 * 60 * 1000;
 /** A widget shown in the last hour keeps NYISO read without any device. */
 const WIDGET_INTEREST_MS = 60 * 60 * 1000;
 
@@ -80,6 +90,11 @@ export function registerHandlers(
   let load = null;
   let pricesAttemptAt = -Infinity;
   let mixAttemptAt = -Infinity;
+  /** EIA code → `{ demand, forecasts, mix }`. */
+  let eia = {};
+  let eiaAttemptAt = -Infinity;
+  let eiaKeyRefused = false;
+  let eiaFirstRead = true;
   let widgetShownAt = -Infinity;
   let lastTickAt = -Infinity;
   let lastStatus = null;
@@ -90,6 +105,7 @@ export function registerHandlers(
 
   const priceIssues = createIssueLog(logger.child('prices'));
   const mixIssues = createIssueLog(logger.child('mix'));
+  const eiaIssues = createIssueLog(logger.child('eia'));
   const gladysIssues = createIssueLog(logger);
 
   const ready = store.load().then((data) => {
@@ -101,6 +117,8 @@ export function registerHandlers(
   const isCreatedId = (id) => (gladys.devices ?? []).some((device) => device.external_id === id);
   const isGridCreated = () => isCreatedId(gridIds(gladys).device);
   const isZoneCreated = (ptid) => isCreatedId(zoneIds(gladys, ptid).device);
+  const isEiaCreated = (code) => isCreatedId(eiaIds(gladys, code).device);
+  const wantsEia = () => eiaRegions(config).some(isEiaCreated);
   const widgetWanted = () => now() - widgetShownAt < WIDGET_INTEREST_MS;
   const wantsPrices = () => config.zones.length > 0 || widgetWanted();
   const wantsMix = () =>
@@ -169,6 +187,48 @@ export function registerHandlers(
     return true;
   }
 
+  /** The EIA grids followed, in two grouped requests. */
+  async function refreshEia() {
+    const regions = eiaRegions(config);
+    if (regions.length === 0) {
+      return true;
+    }
+    eiaAttemptAt = now();
+    try {
+      const read = await fetchEia(fetchImpl, { apiKey: config.eia_api_key, regions, now: now() });
+      const next = {};
+      for (const code of regions) {
+        // Never replace a figure with an older one, nor with none.
+        const before = eia[code] ?? {};
+        const after = read[code];
+        const newest = (a, b) => (a && (!b || a.at >= b.at) ? a : b);
+        next[code] = {
+          demand: newest(after.demand, before.demand),
+          forecasts: after.forecasts.length > 0 ? after.forecasts : (before.forecasts ?? []),
+          mix: newest(after.mix, before.mix),
+        };
+      }
+      eia = next;
+      eiaKeyRefused = false;
+      eiaIssues.ok('read', 'The EIA answers again');
+      if (eiaFirstRead) {
+        eiaFirstRead = false;
+        logger.info(`EIA reachable: ${regions.length} grid(s) followed`);
+      }
+      logger.debug(`EIA read: ${JSON.stringify(Object.keys(read))}`);
+      return true;
+    } catch (err) {
+      eiaKeyRefused = isKeyRefused(err);
+      eiaIssues.fail(
+        'read',
+        eiaKeyRefused
+          ? `The EIA refuses the API key (HTTP ${err.status})`
+          : `The EIA cannot be read: ${err.message}`,
+      );
+      return false;
+    }
+  }
+
   // --- Triggers ---------------------------------------------------------------
 
   // A crossing is remembered even when Gladys refuses the event: it fires once
@@ -230,6 +290,9 @@ export function registerHandlers(
       ...config.zones
         .filter(isZoneCreated)
         .flatMap((ptid) => zoneStates(gladys, ptid, data(), now())),
+      ...eiaRegions(config)
+        .filter(isEiaCreated)
+        .flatMap((code) => eiaStates(gladys, code, eia[code], config, now())),
     ];
     if (states.length === 0) {
       return;
@@ -252,6 +315,13 @@ export function registerHandlers(
       status = { connected: false, message: TEXT.pricesDown };
     } else if (mixIssues.isFailing('read')) {
       status = { connected: false, message: TEXT.mixDown };
+    } else if (eiaIssues.isFailing('read')) {
+      status = {
+        connected: false,
+        message: eiaKeyRefused ? TEXT.eiaKeyRefused : TEXT.eiaDown,
+      };
+    } else if (config.eia_regions.length > 0 && !config.eia_api_key) {
+      status = { connected: false, message: TEXT.eiaKeyMissing };
     }
     const key = JSON.stringify(status);
     if (key === lastStatus) {
@@ -297,6 +367,12 @@ export function registerHandlers(
       if (force || (wantsMix() && now() - mixAttemptAt >= PERIOD_MS)) {
         await refreshMix();
         read = true;
+      }
+      if (
+        eiaRegions(config).length > 0 &&
+        (force || (wantsEia() && now() - eiaAttemptAt >= EIA_PERIOD_MS))
+      ) {
+        await refreshEia();
       }
       await publishStates();
       await reportStatus();
@@ -365,6 +441,10 @@ export function registerHandlers(
     if (config.zones.length > 0 && !fresh(prices, PRICE_MAX_AGE_MS, now())) {
       await refreshPrices();
     }
+    const eiaMissing = eiaRegions(config).some((code) => isEiaCreated(code) && !eia[code]);
+    if (eiaMissing && now() - eiaAttemptAt >= EIA_MIN_GAP_MS) {
+      await refreshEia();
+    }
     await publishStates();
     gladys.requestWidgetRefresh(WIDGET_KEY);
   };
@@ -373,8 +453,13 @@ export function registerHandlers(
   gladys.onDeviceDeleted(() => gladys.requestWidgetRefresh(WIDGET_KEY));
 
   gladys.onAction(ACTION_KEY, async () => {
-    logger.info('Action: test the connection to NYISO');
-    const [pricesOk, mixOk] = await Promise.all([refreshPrices(), refreshMix()]);
+    logger.info('Action: test the connection to NYISO and the EIA');
+    const withEia = eiaRegions(config).length > 0;
+    const [pricesOk, mixOk, eiaOk] = await Promise.all([
+      refreshPrices(),
+      refreshMix(),
+      withEia ? refreshEia() : true,
+    ]);
     await publishStates();
     await reportStatus();
     if (!pricesOk) {
@@ -394,7 +479,14 @@ export function registerHandlers(
       time,
       lowCarbonPercent: mixOk ? mix.lowCarbonPercent : undefined,
     });
-    return pick(message, config.language);
+    const eiaPart = withEia
+      ? MESSAGES.eiaTest({
+          ok: eiaOk,
+          count: Object.values(eia).filter((read) => read.demand || read.mix).length,
+          keyRefused: eiaKeyRefused,
+        })
+      : null;
+    return pick(message, config.language) + (eiaPart ? pick(eiaPart, config.language) : '');
   });
 
   gladys.onWidgetGet(WIDGET_KEY, async ({ settings, language }) => {
@@ -450,6 +542,9 @@ export function registerHandlers(
     },
     get load() {
       return load;
+    },
+    get eia() {
+      return eia;
     },
     get triggers() {
       return persisted.triggers;

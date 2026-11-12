@@ -30,11 +30,15 @@ Gladys before reporting a problem.
 
 In scope: the code of this repository and the Docker image it publishes.
 
-The integration needs no account, key or secret: it only reads the public
-files of NYISO (`https://mis.nyiso.com/public/`), over HTTPS. Under `/data` it
+The integration needs no account: it reads the public files of NYISO
+(`https://mis.nyiso.com/public/`) and, when the user gives one, reads the EIA
+API (`https://api.eia.gov/v2/`) with a free API key, both over HTTPS. The EIA
+key is kept by Gladys in the integration configuration, sent only to
+`api.eia.gov` (in the query string, as the API requires), and never logged
+nor written under `/data`. Under `/data` it
 keeps a single file, the trigger thresholds already crossed. It opens no port
 and reaches nothing on the local network.
 
 Out of scope: Gladys Assistant itself (see its
 [security policy](https://github.com/GladysAssistant/Gladys/security/policy)),
-and NYISO's services.
+and the services of NYISO and the EIA.

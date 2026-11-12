@@ -152,11 +152,24 @@ test('every text of the code has the four languages', () => {
       },
     ],
     testOk: [{ zoneName: 'Long Island', price: 32.68, time: '18:25', lowCarbonPercent: 54 }],
+    eiaDataTime: [{ demandAt: '2026-11-12T12:00:00.000Z', mixAt: '2026-11-12T05:00:00.000Z' }],
+    eiaTest: [{ ok: true, count: 4 }],
   };
   assert.deepEqual(sorted(Object.keys(MESSAGES)), sorted(Object.keys(samples)));
   for (const [key, args] of Object.entries(samples)) {
     found.push(...problems(MESSAGES[key](...args), `MESSAGES.${key}`, MAX.message));
   }
+  // The other forms of the EIA texts.
+  for (const args of [{ ok: false }, { ok: false, keyRefused: true }]) {
+    found.push(...problems(MESSAGES.eiaTest(args), 'MESSAGES.eiaTest', MAX.message));
+  }
+  found.push(
+    ...problems(
+      MESSAGES.eiaDataTime({ mixAt: '2026-11-12T05:00:00.000Z' }),
+      'eiaDataTime',
+      MAX.message,
+    ),
+  );
   assert.deepEqual(found, []);
 });
 

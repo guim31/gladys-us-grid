@@ -35,6 +35,13 @@ export const NAMES = {
     summary: 'Summary',
     price: 'Real-time price ($/MWh)',
     zone_load: 'Zone load',
+    demand: 'Demand',
+    demand_forecast: 'Demand forecast, this hour',
+    demand_forecast_peak: 'Peak forecast, next 24 h',
+    coal_share: 'Coal share',
+    solar_share: 'Solar share',
+    other_share: 'Other sources share',
+    data_time: 'Data time (EIA)',
   },
   fr: {
     grid: 'Réseau électrique de New York',
@@ -52,6 +59,13 @@ export const NAMES = {
     summary: 'Résumé',
     price: 'Prix temps réel ($/MWh)',
     zone_load: 'Consommation de la zone',
+    demand: 'Demande',
+    demand_forecast: 'Prévision de demande, heure en cours',
+    demand_forecast_peak: 'Pointe prévue sur 24 h',
+    coal_share: 'Part du charbon',
+    solar_share: 'Part du solaire',
+    other_share: 'Part des autres sources',
+    data_time: 'Heure des données (EIA)',
   },
   de: {
     grid: 'Stromnetz New York',
@@ -69,6 +83,13 @@ export const NAMES = {
     summary: 'Zusammenfassung',
     price: 'Echtzeitpreis ($/MWh)',
     zone_load: 'Verbrauch der Zone',
+    demand: 'Verbrauch',
+    demand_forecast: 'Verbrauchsprognose, diese Stunde',
+    demand_forecast_peak: 'Prognostizierte Spitze, 24 h',
+    coal_share: 'Anteil Kohle',
+    solar_share: 'Anteil Solar',
+    other_share: 'Anteil andere Quellen',
+    data_time: 'Zeit der Daten (EIA)',
   },
   es: {
     grid: 'Red eléctrica de Nueva York',
@@ -86,6 +107,13 @@ export const NAMES = {
     summary: 'Resumen',
     price: 'Precio en tiempo real ($/MWh)',
     zone_load: 'Consumo de la zona',
+    demand: 'Demanda',
+    demand_forecast: 'Previsión de demanda, hora actual',
+    demand_forecast_peak: 'Pico previsto en 24 h',
+    coal_share: 'Proporción de carbón',
+    solar_share: 'Proporción solar',
+    other_share: 'Proporción de otras fuentes',
+    data_time: 'Hora de los datos (EIA)',
   },
 };
 
@@ -148,6 +176,24 @@ export const TEXT = {
     de: 'Strommix oder Verbrauch von NYISO sind nicht lesbar. Neuer Versuch alle fünf Minuten.',
     es: 'No se puede leer el mix o el consumo de NYISO. Nuevo intento cada cinco minutos.',
   },
+  eiaDown: {
+    en: 'The EIA cannot be read. Retrying every hour.',
+    fr: "L'EIA est illisible. Nouvel essai toutes les heures.",
+    de: 'Die EIA ist nicht lesbar. Neuer Versuch jede Stunde.',
+    es: 'No se puede leer la EIA. Nuevo intento cada hora.',
+  },
+  eiaKeyRefused: {
+    en: 'The EIA refuses the API key: check it in the configuration.',
+    fr: "L'EIA refuse la clé d'API : vérifiez-la dans la configuration.",
+    de: 'Die EIA lehnt den API-Schlüssel ab: prüfe ihn in der Konfiguration.',
+    es: 'La EIA rechaza la clave de API: verifíquela en la configuración.',
+  },
+  eiaKeyMissing: {
+    en: 'EIA grids chosen without an API key: they are not read.',
+    fr: "Réseaux EIA choisis sans clé d'API : ils ne sont pas lus.",
+    de: 'EIA-Netze gewählt, aber kein API-Schlüssel: keine Daten.',
+    es: 'Redes EIA elegidas sin clave de API: no se leen.',
+  },
   initFailed: {
     en: 'The integration could not start. See its logs.',
     fr: "L'intégration n'a pas pu démarrer. Voir ses journaux.",
@@ -163,6 +209,17 @@ export function formatNumber(value, language, digits = 0) {
   return value.toLocaleString(locale(language), {
     minimumFractionDigits: digits,
     maximumFractionDigits: digits,
+  });
+}
+
+/** "12/11 08:00" (day/month, or month/day in English), in the time zone of Gladys. */
+export function formatTime(at, language) {
+  return new Date(at).toLocaleString(locale(language), {
+    day: '2-digit',
+    month: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    hourCycle: 'h23',
   });
 }
 
@@ -201,6 +258,37 @@ export const MESSAGES = {
         parts.push(`${zoneName} ${formatNumber(price, language, 2)} $/MWh`);
       }
       return parts.join(', ');
+    }),
+  /** The hours of the EIA figures, in the time zone of Gladys: "Demand 12/11 08:00, mix 03:00". */
+  eiaDataTime: ({ demandAt, mixAt }) =>
+    each((language) => {
+      const words = {
+        en: ['Demand', 'mix', 'Mix'],
+        fr: ['Demande', 'mix', 'Mix'],
+        de: ['Verbrauch', 'Strommix', 'Strommix'],
+        es: ['Demanda', 'mix', 'Mix'],
+      }[language];
+      const parts = [];
+      if (demandAt) {
+        parts.push(`${words[0]} ${formatTime(demandAt, language)}`);
+      }
+      if (mixAt) {
+        parts.push(`${parts.length ? words[1] : words[2]} ${formatTime(mixAt, language)}`);
+      }
+      return parts.join(' · ');
+    }),
+  /** The EIA part of the test action's answer. */
+  eiaTest: ({ ok, count, keyRefused }) =>
+    each((language) => {
+      if (ok) {
+        return {
+          en: ` EIA answers: ${count} grid(s) read.`,
+          fr: ` L'EIA répond : ${count} réseau(x) lu(s).`,
+          de: ` Die EIA antwortet: ${count} Netz(e) gelesen.`,
+          es: ` La EIA responde: ${count} red(es) leída(s).`,
+        }[language];
+      }
+      return ` ${(keyRefused ? TEXT.eiaKeyRefused : TEXT.eiaDown)[language]}`;
     }),
   /** The answer of the test action. */
   testOk: ({ zoneName, price, time, lowCarbonPercent }) =>

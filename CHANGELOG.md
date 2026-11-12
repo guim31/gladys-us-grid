@@ -10,6 +10,24 @@ the notes of the version's GitHub Release.
 
 ## [Unreleased]
 
+### Added
+
+- Every US power grid, hourly, through the open data of the EIA (U.S. Energy
+  Information Administration), with a free API key: one device per grid
+  followed (about seventy balancing authorities and EIA regions, such as
+  ERCOT, PJM, MISO, SPP, CAISO, ISO New England, TVA, Southeast, Florida),
+  with the demand, the forecast of the hour in progress, the peak forecast of
+  the next 24 hours, the low-carbon and renewable shares, the estimated CO₂,
+  the share of gas, coal, nuclear, wind, solar, hydro and other sources, and
+  the time of the figures (the EIA is one to eight hours late, without
+  price). One grouped read an hour. Without a key, NYISO alone, as before.
+- The test action also checks the EIA; the Configuration screen says when
+  the EIA key is missing or refused.
+
+### Changed
+
+- The integration is now named "US Power Grids".
+
 ## [1.0.0] - 2026-11-09
 
 ### Added

@@ -1,10 +1,11 @@
-# NYISO New York Grid for Gladys Assistant
+# US Power Grids for Gladys Assistant
 
 A [Gladys Assistant](https://gladysassistant.com) external integration: the New York power grid
 live, from the public files of [NYISO](https://www.nyiso.com), the operator of the New York State
-grid. No account, no key.
+grid, no account, no key; and every US grid hourly through the open data of the
+[EIA](https://www.eia.gov/opendata/) (U.S. Energy Information Administration), with a free key.
 
-> Developed without a New York electricity account (the data is public): feedback welcome on the
+> Developed without an electricity account in the US (the data is public): feedback welcome on the
 > [Gladys forum](https://community.gladysassistant.com).
 
 ## Features
@@ -18,7 +19,12 @@ grid. No account, no key.
   threshold. Once per crossing, with a re-arm margin, remembered across restarts.
 - **Dashboard widget**: the price of a zone, low-carbon share, CO₂, load, a 24-hour chart and the
   fuel mix as bars; the chart and the mix can be hidden.
-- A **Test the connection to NYISO** action.
+- One device per **EIA grid** followed (about seventy balancing authorities and EIA regions:
+  ERCOT, PJM, MISO, SPP, CAISO, ISO New England, TVA, Southeast, Northwest, Florida…), with a
+  free EIA key: demand, forecast of the hour in progress, peak forecast of the next 24 hours,
+  low-carbon and renewable shares, estimated CO₂, the share of gas, coal, nuclear, wind, solar,
+  hydro and other sources, and the time of the figures. Hourly, one to eight hours late, no price.
+- A **Test the connection to NYISO and the EIA** action.
 - English, French, German and Spanish.
 
 **The prices are wholesale prices**, not your electricity rate.
@@ -26,7 +32,9 @@ grid. No account, no key.
 ## Requirements
 
 - Gladys Assistant 5.3.0 or later.
-- Internet access from Gladys to `mis.nyiso.com`.
+- Internet access from Gladys to `mis.nyiso.com` (and `api.eia.gov` for the EIA grids).
+- For the EIA grids only: a free API key, asked on
+  [eia.gov/opendata](https://www.eia.gov/opendata/register.php) with an e-mail address.
 
 ## Installation
 
@@ -56,14 +64,30 @@ The CO₂ intensity is an **estimate**: the generation of each category times it
 factor (IPCC AR5 2014 medians, the defaults of Electricity Maps; gas and dual fuel 490 g/kWh, other
 fossil fuels 650, other renewables 230, hydro 24, nuclear 12, wind 11). Imports are not counted.
 
+### The EIA grids
+
+Form EIA-930 (Hourly Electric Grid Monitor), through the API v2 of the EIA:
+`/v2/electricity/rto/region-data` (demand `D`, day-ahead forecast `DF`) and `fuel-type-data`
+(net generation by source). Once an hour, the container sends **one grouped request per dataset**
+for every grid followed (paged past 5,000 rows), only when an EIA device is added. Periods are UTC
+hours stamped with the end of the hour. The demand comes about an hour late, the fuel mix four to
+eight hours late (more for some small authorities), hence the "Data time" feature. A demand older
+than 6 hours or a mix older than 24 hours is not published. The forecasts are worked out at each
+publication from the last read (the hour in progress, the highest hour of the next 24). Same
+emission factors, plus coal 820, solar 45, geothermal 38, oil 650 and 700 for "other"; battery and
+pumped storage are left out. The EIA publishes no hourly price. Without a key, NYISO alone; the key
+is never logged.
+
 ## Other US grids
 
-- California: the [CAISO integration](https://github.com/LM1LC3N7/gladys-caiso) by LM1LC3N7.
+- All of them hourly through the EIA (above).
+- California in real time: the [CAISO integration](https://github.com/LM1LC3N7/gladys-caiso) by
+  LM1LC3N7.
 - ISO New England: the CSV downloads of ISO Express answer 403 without a browser session, and
   the JSON the website uses is an internal endpoint; the documented web services need an account.
 - MISO (the former public API answers "no data" and points to a keyed API), PJM (Data Miner needs
   a key), SPP (no answer), ERCOT (bot protection, API with an account): no open source, not
-  offered. Checked on 2026-11-07.
+  offered in real time. Checked on 2026-11-07.
 
 ## Limitations
 
@@ -91,6 +115,7 @@ Versions, images and releases belong to the Release workflow (Actions → Releas
 
 - [NYISO](https://www.nyiso.com): the public market and operations data of
   [mis.nyiso.com](https://mis.nyiso.com/public/).
+- [EIA](https://www.eia.gov/opendata/): Form EIA-930, Hourly Electric Grid Monitor, public domain.
 - Emission factors: IPCC AR5 (2014), as used by [Electricity Maps](https://www.electricitymaps.com).
 - The architecture, the conformity and language tests follow
   [gladys-rte](https://github.com/guim31/gladys-rte) and
@@ -99,7 +124,7 @@ Versions, images and releases belong to the Release workflow (Actions → Releas
 ## Disclaimer
 
 This project is not affiliated with, endorsed or sponsored by NYISO (New York Independent System
-Operator). The NYISO logo on the cover belongs to NYISO.
+Operator) nor by the U.S. Energy Information Administration (EIA). The NYISO logo on the cover belongs to NYISO.
 
 ## License
 

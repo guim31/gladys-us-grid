@@ -1,0 +1,738 @@
+{
+  "response": {
+    "total": "81",
+    "dateFormat": "YYYY-MM-DD\"T\"HH24",
+    "frequency": "hourly",
+    "data": [
+      {
+        "period": "2026-11-12T07",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "fueltype": "NG",
+        "type-name": "Natural Gas",
+        "value": "231",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T07",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "fueltype": "OTH",
+        "type-name": "Other",
+        "value": "31",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T07",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "fueltype": "SUN",
+        "type-name": "Solar",
+        "value": "0",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T07",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "fueltype": "WAT",
+        "type-name": "Hydro",
+        "value": "386",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T07",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "fueltype": "WND",
+        "type-name": "Wind",
+        "value": "124",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T06",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "fueltype": "NG",
+        "type-name": "Natural Gas",
+        "value": "236",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T06",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "fueltype": "OTH",
+        "type-name": "Other",
+        "value": "30",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T06",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "fueltype": "SUN",
+        "type-name": "Solar",
+        "value": "0",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T06",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "fueltype": "WAT",
+        "type-name": "Hydro",
+        "value": "387",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T06",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "fueltype": "WND",
+        "type-name": "Wind",
+        "value": "129",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T05",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "fueltype": "NG",
+        "type-name": "Natural Gas",
+        "value": "238",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T05",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "fueltype": "OTH",
+        "type-name": "Other",
+        "value": "30",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T05",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "fueltype": "SUN",
+        "type-name": "Solar",
+        "value": "0",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T05",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "fueltype": "WAT",
+        "type-name": "Hydro",
+        "value": "455",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T05",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "fueltype": "WND",
+        "type-name": "Wind",
+        "value": "77",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T05",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "fueltype": "BAT",
+        "type-name": "Battery storage",
+        "value": "499",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T05",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "fueltype": "COL",
+        "type-name": "Coal",
+        "value": "7378",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T05",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "fueltype": "NG",
+        "type-name": "Natural Gas",
+        "value": "32504",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T05",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "fueltype": "NUC",
+        "type-name": "Nuclear",
+        "value": "3857",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T05",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "fueltype": "OTH",
+        "type-name": "Other",
+        "value": "0",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T05",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "fueltype": "SUN",
+        "type-name": "Solar",
+        "value": "0",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T05",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "fueltype": "WAT",
+        "type-name": "Hydro",
+        "value": "138",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T05",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "fueltype": "WND",
+        "type-name": "Wind",
+        "value": "2478",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "fueltype": "NG",
+        "type-name": "Natural Gas",
+        "value": "239",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "fueltype": "OTH",
+        "type-name": "Other",
+        "value": "30",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "fueltype": "SUN",
+        "type-name": "Solar",
+        "value": "0",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "fueltype": "WAT",
+        "type-name": "Hydro",
+        "value": "579",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "fueltype": "WND",
+        "type-name": "Wind",
+        "value": "40",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "fueltype": "BAT",
+        "type-name": "Battery storage",
+        "value": "2582",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "fueltype": "COL",
+        "type-name": "Coal",
+        "value": "7654",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "fueltype": "NG",
+        "type-name": "Natural Gas",
+        "value": "32390",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "fueltype": "NUC",
+        "type-name": "Nuclear",
+        "value": "3857",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "fueltype": "OTH",
+        "type-name": "Other",
+        "value": "1",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "fueltype": "SUN",
+        "type-name": "Solar",
+        "value": "0",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "fueltype": "WAT",
+        "type-name": "Hydro",
+        "value": "139",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "fueltype": "WND",
+        "type-name": "Wind",
+        "value": "2669",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "fueltype": "BAT",
+        "type-name": "Battery storage",
+        "value": "85",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "fueltype": "COL",
+        "type-name": "Coal",
+        "value": "16529",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "fueltype": "NG",
+        "type-name": "Natural Gas",
+        "value": "27813",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "fueltype": "NUC",
+        "type-name": "Nuclear",
+        "value": "8937",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "fueltype": "OTH",
+        "type-name": "Other",
+        "value": "579",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "fueltype": "SUN",
+        "type-name": "Solar",
+        "value": "5",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "fueltype": "WAT",
+        "type-name": "Hydro",
+        "value": "618",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "fueltype": "WND",
+        "type-name": "Wind",
+        "value": "17885",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "fueltype": "COL",
+        "type-name": "Coal",
+        "value": "12695",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "fueltype": "NG",
+        "type-name": "Natural Gas",
+        "value": "36403",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "fueltype": "NUC",
+        "type-name": "Nuclear",
+        "value": "30685",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "fueltype": "OIL",
+        "type-name": "Petroleum",
+        "value": "626",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "fueltype": "OTH",
+        "type-name": "Other",
+        "value": "3041",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "fueltype": "SUN",
+        "type-name": "Solar",
+        "value": "14",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "fueltype": "WAT",
+        "type-name": "Hydro",
+        "value": "831",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T04",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "fueltype": "WND",
+        "type-name": "Wind",
+        "value": "4228",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "fueltype": "NG",
+        "type-name": "Natural Gas",
+        "value": "238",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "fueltype": "OTH",
+        "type-name": "Other",
+        "value": "30",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "fueltype": "SUN",
+        "type-name": "Solar",
+        "value": "0",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "fueltype": "WAT",
+        "type-name": "Hydro",
+        "value": "580",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "AVA",
+        "respondent-name": "Avista Corporation",
+        "fueltype": "WND",
+        "type-name": "Wind",
+        "value": "57",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "fueltype": "BAT",
+        "type-name": "Battery storage",
+        "value": "3719",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "fueltype": "COL",
+        "type-name": "Coal",
+        "value": "8084",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "fueltype": "NG",
+        "type-name": "Natural Gas",
+        "value": "32217",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "fueltype": "NUC",
+        "type-name": "Nuclear",
+        "value": "3857",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "fueltype": "OTH",
+        "type-name": "Other",
+        "value": "0",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "fueltype": "SUN",
+        "type-name": "Solar",
+        "value": "0",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "fueltype": "WAT",
+        "type-name": "Hydro",
+        "value": "139",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "ERCO",
+        "respondent-name": "Electric Reliability Council of Texas, Inc.",
+        "fueltype": "WND",
+        "type-name": "Wind",
+        "value": "3631",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "fueltype": "BAT",
+        "type-name": "Battery storage",
+        "value": "127",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "fueltype": "COL",
+        "type-name": "Coal",
+        "value": "16727",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "fueltype": "NG",
+        "type-name": "Natural Gas",
+        "value": "29220",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "fueltype": "NUC",
+        "type-name": "Nuclear",
+        "value": "8932",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "fueltype": "OTH",
+        "type-name": "Other",
+        "value": "570",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "fueltype": "SUN",
+        "type-name": "Solar",
+        "value": "6",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "fueltype": "WAT",
+        "type-name": "Hydro",
+        "value": "639",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "MISO",
+        "respondent-name": "Midcontinent Independent System Operator, Inc.",
+        "fueltype": "WND",
+        "type-name": "Wind",
+        "value": "18490",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "fueltype": "COL",
+        "type-name": "Coal",
+        "value": "13096",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "fueltype": "NG",
+        "type-name": "Natural Gas",
+        "value": "37843",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "fueltype": "NUC",
+        "type-name": "Nuclear",
+        "value": "30689",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "fueltype": "OIL",
+        "type-name": "Petroleum",
+        "value": "1220",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "fueltype": "OTH",
+        "type-name": "Other",
+        "value": "3219",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "fueltype": "SUN",
+        "type-name": "Solar",
+        "value": "14",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "fueltype": "WAT",
+        "type-name": "Hydro",
+        "value": "1548",
+        "value-units": "megawatthours"
+      },
+      {
+        "period": "2026-11-12T03",
+        "respondent": "PJM",
+        "respondent-name": "PJM Interconnection, LLC",
+        "fueltype": "WND",
+        "type-name": "Wind",
+        "value": "4237",
+        "value-units": "megawatthours"
+      }
+    ]
+  }
+}

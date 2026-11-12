@@ -1,4 +1,4 @@
-# NYISO New York Grid
+# US Power Grids
 
 Les chiffres du réseau électrique de New York en direct dans Gladys, tirés
 des fichiers publics de NYISO, l'opérateur du réseau de l'État de New York :
@@ -7,6 +7,13 @@ filière, la part bas carbone et un taux de CO₂ estimé.
 
 Développée sans compte d'électricité à New York, les données étant publiques : les retours sont les bienvenus.
 Sans lien avec NYISO.
+
+Et **tous les réseaux américains** aussi, grâce aux
+données ouvertes de l'EIA (l'agence américaine d'information sur l'énergie) :
+demande, prévision de demande, mix, part bas carbone et CO₂ estimé d'ERCOT,
+PJM, MISO, SPP, CAISO, ISO New England, du Sud-Est, du Nord-Ouest, de la
+Floride… à l'heure, avec une clé gratuite. Développée sans compte chez ces
+gestionnaires : les retours sont les bienvenus. Sans lien avec l'EIA.
 
 ## Ce que vous obtenez
 
@@ -17,6 +24,12 @@ Sans lien avec NYISO.
   consommation.
 - Quatre déclencheurs de scène (prix au-dessus, prix en dessous, prix négatif,
   part bas carbone au-dessus) et un widget de tableau de bord.
+- Avec une clé EIA gratuite, un appareil par **réseau EIA** suivi (environ
+  soixante-dix gestionnaires et régions de l'EIA) : demande, prévision de
+  l'heure en cours et pointe prévue sur 24 heures, parts bas carbone et
+  renouvelable, CO₂ estimé, part du gaz, du charbon, du nucléaire, de
+  l'éolien, du solaire, de l'hydraulique et des autres sources, et l'heure
+  des données.
 
 **Les prix sont des prix de gros** du marché temps réel de NYISO, pas votre
 tarif d'électricité : le fournisseur ajoute l'acheminement, les taxes et sa
@@ -27,6 +40,10 @@ marge. Ils montrent tout de même quand l'électricité est abondante ou rare.
 - Gladys 5.3.0 ou plus récent.
 - Un accès à Internet depuis Gladys (les fichiers sont lus sur
   `mis.nyiso.com`). Ni compte ni clé.
+
+- Pour les réseaux EIA seulement : une clé d'API gratuite, demandée sur
+  [eia.gov/opendata](https://www.eia.gov/opendata/register.php) avec une
+  adresse e-mail (sans compte payant). Sans clé, NYISO seul.
 
 ## Installation
 
@@ -44,6 +61,11 @@ dépôt : `https://github.com/guim31/gladys-us-grid`.
 3. **Langue des noms** : celle des noms des fonctionnalités (figés à l'ajout
    d'un appareil), du résumé et du message de test.
 4. Enregistrez, puis ajoutez les appareils depuis l'onglet **Découverte**.
+
+5. **EIA** (facultatif) : collez la **clé d'API EIA**, choisissez les
+   **réseaux à suivre via l'EIA** (les régions de l'EIA d'abord, comme Texas
+   ou Southeast, puis les gestionnaires par nom, comme ERCOT, PJM, MISO),
+   enregistrez et ajoutez leurs appareils depuis l'onglet **Découverte**.
 
 ## Appareils
 
@@ -65,6 +87,21 @@ importations des réseaux voisins ne figurent pas dans le mix de NYISO.
 
 `NYISO <zone> (<lettre>)` : le **prix temps réel** de la zone (LBMP, $/MWh,
 pas de cinq minutes) et la **consommation** de la zone (kW).
+
+### Réseau EIA
+
+`<réseau> (EIA)`, un par réseau suivi :
+
+| Fonctionnalité                       | Unité     | Remarque                                                     |
+| ------------------------------------ | --------- | ------------------------------------------------------------ |
+| Demande                              | kW        | la dernière heure publiée                                    |
+| Prévision de demande, heure en cours | kW        | la prévision de la veille de l'EIA pour l'heure en cours     |
+| Pointe prévue sur 24 h               | kW        | l'heure la plus haute de la prévision                        |
+| Taux de CO₂ (estimé)                 | g CO₂/kWh | d'après le mix, voir plus bas                                |
+| Part bas carbone                     | %         | nucléaire, hydraulique, éolien, solaire, géothermie          |
+| Part renouvelable                    | %         | hydraulique, éolien, solaire, géothermie                     |
+| Part de chaque source                | %         | gaz, charbon, nucléaire, éolien, solaire, hydraulique, autre |
+| Heure des données (EIA)              | texte     | « Demande 12/11 07:00 · mix 12/11 01:00 » (heure de Gladys)  |
 
 ## Scènes
 
@@ -95,6 +132,11 @@ La part bas carbone passe au-dessus de son seuil : un bon moment pour lancer
 les appareils. Variables : `low_carbon_share`, `renewable_share`,
 `carbon_intensity`, `threshold`.
 
+Pour un réseau EIA, utilisez dans une scène les fonctionnalités de son
+appareil (« Part bas carbone au-dessus de 60 % », puis lancer le lave-linge) :
+ses chiffres changent une fois par heure, un seuil sur une fonctionnalité ne
+se déclenche donc pas en boucle.
+
 ## Tableau de bord
 
 ### Widget Réseau de New York
@@ -107,7 +149,7 @@ réglage pour les masquer.
 
 ## Actions
 
-**Tester la connexion à NYISO** lit tout de suite les prix, le mix et la
+**Tester la connexion à NYISO et à l'EIA** lit tout de suite les prix, le mix et la
 consommation, et répond avec le prix de votre première zone.
 
 ## Données et limites
@@ -128,10 +170,22 @@ consommation, et répond avec le prix de votre première zone.
   fossiles (fioul), 230 pour les autres renouvelables (surtout biomasse), 24
   pour l'hydraulique, 12 pour le nucléaire, 11 pour l'éolien. Les
   importations ne sont pas comptées.
-- NYISO seulement pour l'instant. La Californie est couverte par
-  l'[intégration CAISO](https://github.com/LM1LC3N7/gladys-caiso)
-  (gladys-caiso). ISO New England, MISO, SPP, PJM et ERCOT ne publient pas de
-  fichier ouvert lisible sans compte ni navigateur.
+- **Réseaux EIA** : formulaire EIA-930 (Hourly Electric Grid Monitor), API v2
+  de l'EIA. Chiffres horaires, publiés **avec une à deux heures de retard
+  pour la demande, quatre à huit heures pour le mix** (davantage chez
+  certains petits gestionnaires) : la fonctionnalité « Heure des données »
+  dit quelle heure vous voyez. Lus une fois par heure, en deux requêtes
+  groupées (demande et mix) pour tous les réseaux suivis, bien en deçà des
+  limites de la clé gratuite. Une demande de plus de 6 heures ou un mix de
+  plus de 24 heures n'est pas publié. **Pas de prix** : l'EIA n'en publie
+  pas à l'heure. Mêmes facteurs d'émission que ci-dessus, plus 820 g/kWh
+  pour le charbon, 45 pour le solaire, 38 pour la géothermie, 650 pour le
+  fioul et 700 pour « autre » (mélange inconnu) ; les batteries et le
+  pompage-turbinage sont écartés (ils déplacent l'énergie, ils n'en
+  produisent pas).
+- La Californie en temps réel : l'[intégration
+  CAISO](https://github.com/LM1LC3N7/gladys-caiso) (gladys-caiso). L'EIA la
+  couvre aussi, à l'heure.
 
 ## Dépannage
 
@@ -139,11 +193,21 @@ consommation, et répond avec le prix de votre première zone.
   configuration : NYISO n'a pas répondu ; l'intégration réessaie toutes les
   cinq minutes.
 - Rien dans les appareils : vérifiez qu'ils sont ajoutés, et utilisez
-  **Tester la connexion à NYISO**.
+  **Tester la connexion à NYISO et à l'EIA**.
 - Journaux détaillés : `LOG_LEVEL=debug` sur l'intégration.
+
+- **« L'EIA refuse la clé d'API »** : vérifiez la clé collée dans la
+  configuration (l'e-mail de l'EIA la donne).
+- **« L'EIA est illisible »** : l'EIA n'a pas répondu, ou la limite de la clé
+  est atteinte ; nouvel essai toutes les heures.
+- Une fonctionnalité EIA sans valeur : ce réseau ne la publie pas (prévision,
+  solaire…), ou ses chiffres sont trop anciens.
 
 ## Crédits
 
 Données : NYISO (New York Independent System Operator), données publiques de
 marché et d'exploitation. Facteurs d'émission : GIEC AR5 (2014), via
 Electricity Maps. Code sous licence Apache 2.0. Sans lien avec NYISO.
+
+Réseaux EIA : U.S. Energy Information Administration, formulaire EIA-930,
+domaine public. Sans lien avec l'EIA.

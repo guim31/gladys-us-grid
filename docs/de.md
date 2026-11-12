@@ -1,4 +1,4 @@
-# NYISO New York Grid
+# US Power Grids
 
 Die Zahlen des Stromnetzes von New York live in Gladys, aus den öffentlichen
 Dateien von NYISO, dem Betreiber des Netzes des Bundesstaats New York: der
@@ -7,6 +7,13 @@ CO₂-arme Anteil und eine geschätzte CO₂-Intensität.
 
 Ohne Stromvertrag in New York entwickelt: Rückmeldungen willkommen (die Daten
 sind öffentlich). Nicht mit NYISO verbunden.
+
+Dazu **alle US-Stromnetze**, über die offenen Daten der EIA
+(U.S. Energy Information Administration): Verbrauch, Verbrauchsprognose,
+Strommix, CO₂-armer Anteil und geschätztes CO₂ von ERCOT, PJM, MISO, SPP,
+CAISO, ISO New England, dem Südosten, dem Nordwesten, Florida… stündlich, mit
+einem kostenlosen Schlüssel. Ohne Konto bei diesen Netzbetreibern entwickelt:
+Rückmeldungen willkommen. Nicht mit der EIA verbunden.
 
 ## Was du bekommst
 
@@ -17,6 +24,12 @@ sind öffentlich). Nicht mit NYISO verbunden.
   Verbrauch.
 - Vier Szenen-Auslöser (Preis über, Preis unter, negativer Preis, CO₂-armer
   Anteil über) und ein Dashboard-Widget.
+- Mit einem kostenlosen EIA-Schlüssel ein Gerät pro **EIA-Netz**, dem du
+  folgst (etwa siebzig Netzbetreiber und EIA-Regionen): Verbrauch, Prognose
+  der laufenden Stunde und prognostizierte Spitze der nächsten 24 Stunden,
+  CO₂-armer und erneuerbarer Anteil, geschätztes CO₂, Anteil von Gas, Kohle,
+  Kernkraft, Wind, Solar, Wasserkraft und anderen Quellen, und die Zeit der
+  Daten.
 
 **Die Preise sind Großhandelspreise** des NYISO-Echtzeitmarkts, nicht dein
 Stromtarif: Der Versorger schlägt Netz, Steuern und Marge auf. Die Preise zeigen
@@ -27,6 +40,10 @@ trotzdem, wann Strom reichlich oder knapp ist.
 - Gladys 5.3.0 oder neuer.
 - Internetzugang von Gladys aus (die Dateien werden auf `mis.nyiso.com`
   gelesen). Kein Konto, kein Schlüssel.
+
+- Nur für die EIA-Netze: ein kostenloser API-Schlüssel, beantragt auf
+  [eia.gov/opendata](https://www.eia.gov/opendata/register.php) mit einer
+  E-Mail-Adresse (kein bezahltes Konto). Ohne Schlüssel nur NYISO.
 
 ## Installation
 
@@ -44,6 +61,11 @@ Repositorys: `https://github.com/guim31/gladys-us-grid`.
 3. **Sprache der Namen**: die der Funktionsnamen (beim Hinzufügen eines Geräts
    festgelegt), der Zusammenfassung und der Testmeldung.
 4. Speichern, dann die Geräte im Tab **Entdecken** hinzufügen.
+
+5. **EIA** (optional): füge den **EIA-API-Schlüssel** ein, wähle die **Netze
+   über die EIA** (zuerst die EIA-Regionen wie Texas oder Southeast, dann die
+   Netzbetreiber nach Namen wie ERCOT, PJM, MISO), speichere und füge ihre
+   Geräte im Tab **Entdecken** hinzu.
 
 ## Geräte
 
@@ -65,6 +87,21 @@ Nachbarnetzen stehen nicht im NYISO-Strommix.
 
 `NYISO <Zone> (<Buchstabe>)`: der **Echtzeitpreis** der Zone (LBMP, $/MWh,
 Fünf-Minuten-Intervall) und der **Verbrauch** der Zone (kW).
+
+### EIA-Netz
+
+`<Netz> (EIA)`, eines pro Netz:
+
+| Funktion                         | Einheit   | Hinweis                                                          |
+| -------------------------------- | --------- | ---------------------------------------------------------------- |
+| Verbrauch                        | kW        | die letzte veröffentlichte Stunde                                |
+| Verbrauchsprognose, diese Stunde | kW        | die Vortagesprognose der EIA für die laufende Stunde             |
+| Prognostizierte Spitze, 24 h     | kW        | die höchste Stunde der Prognose                                  |
+| CO₂-Intensität (geschätzt)       | g CO₂/kWh | aus dem Strommix, siehe unten                                    |
+| CO₂-armer Anteil                 | %         | Kernkraft, Wasserkraft, Wind, Solar, Geothermie                  |
+| Erneuerbarer Anteil              | %         | Wasserkraft, Wind, Solar, Geothermie                             |
+| Anteil jeder Quelle              | %         | Erdgas, Kohle, Kernkraft, Wind, Solar, Wasserkraft, andere       |
+| Zeit der Daten (EIA)             | Text      | „Verbrauch 12.11., 07:00 · Strommix 12.11., 01:00“ (Gladys-Zeit) |
 
 ## Szenen
 
@@ -95,6 +132,11 @@ Der CO₂-arme Anteil steigt über seine Schwelle: ein guter Moment, Geräte
 laufen zu lassen. Variablen: `low_carbon_share`, `renewable_share`,
 `carbon_intensity`, `threshold`.
 
+Für ein EIA-Netz nutzt du in einer Szene die Funktionen seines Geräts
+(„CO₂-armer Anteil über 60 %“, dann die Waschmaschine starten): Seine Zahlen
+ändern sich einmal pro Stunde, eine Schwelle auf einer Funktion löst also
+nicht ständig aus.
+
 ## Dashboard
 
 ### Widget Stromnetz New York
@@ -107,7 +149,7 @@ jeweils per Einstellung ausblenden.
 
 ## Aktionen
 
-**Verbindung zu NYISO testen** liest sofort Preise, Strommix und Verbrauch und
+**Verbindung zu NYISO und EIA testen** liest sofort Preise, Strommix und Verbrauch und
 antwortet mit dem Preis deiner ersten Zone.
 
 ## Daten und Grenzen
@@ -125,10 +167,21 @@ antwortet mit dem Preis deiner ersten Zone.
   490 g/kWh für Gas und Zweistoff, 650 für andere fossile (Öl), 230 für andere
   erneuerbare (meist Biomasse), 24 Wasserkraft, 12 Kernkraft, 11 Wind. Importe
   werden nicht gezählt.
-- Vorerst nur NYISO. Kalifornien deckt die
+- **EIA-Netze**: Formular EIA-930 (Hourly Electric Grid Monitor), API v2 der
+  EIA. Stündliche Zahlen, veröffentlicht **ein bis zwei Stunden verspätet für
+  den Verbrauch, vier bis acht Stunden für den Strommix** (bei manchen
+  kleinen Netzbetreibern mehr): Die Funktion „Zeit der Daten“ sagt, welche
+  Stunde du siehst. Einmal pro Stunde gelesen, in zwei gebündelten Anfragen
+  (Verbrauch und Strommix) für alle Netze, weit unter den Grenzen des
+  kostenlosen Schlüssels. Ein Verbrauch älter als 6 Stunden oder ein
+  Strommix älter als 24 Stunden wird nicht veröffentlicht. **Kein Preis**:
+  Die EIA veröffentlicht keinen stündlichen Preis. Gleiche Emissionsfaktoren
+  wie oben, dazu 820 g/kWh für Kohle, 45 Solar, 38 Geothermie, 650 Öl und 700
+  für „andere“ (unbekannter Mix); Batterien und Pumpspeicher bleiben außen
+  vor (sie verschieben Energie, sie erzeugen keine).
+- Kalifornien in Echtzeit: die
   [CAISO-Integration](https://github.com/LM1LC3N7/gladys-caiso)
-  (gladys-caiso) ab. ISO New England, MISO, SPP, PJM und ERCOT
-  veröffentlichen keine offene Datei, die ohne Konto oder Browser lesbar ist.
+  (gladys-caiso). Die EIA deckt es auch stündlich ab.
 
 ## Fehlerbehebung
 
@@ -136,11 +189,21 @@ antwortet mit dem Preis deiner ersten Zone.
   NYISO hat nicht geantwortet; die Integration versucht es alle fünf Minuten
   erneut.
 - Nichts in den Geräten: Prüfe, ob sie hinzugefügt sind, und nutze
-  **Verbindung zu NYISO testen**.
+  **Verbindung zu NYISO und EIA testen**.
 - Ausführliche Logs: `LOG_LEVEL=debug` für die Integration.
+
+- **„Die EIA lehnt den API-Schlüssel ab“**: prüfe den in der Konfiguration
+  eingefügten Schlüssel (die E-Mail der EIA enthält ihn).
+- **„Die EIA ist nicht lesbar“**: Die EIA hat nicht geantwortet oder die
+  Grenze des Schlüssels ist erreicht; neuer Versuch jede Stunde.
+- Eine EIA-Funktion ohne Wert: Dieses Netz veröffentlicht sie nicht
+  (Prognose, Solar…), oder seine Zahlen sind zu alt.
 
 ## Danksagung
 
 Daten: NYISO (New York Independent System Operator), öffentliche Markt- und
 Betriebsdaten. Emissionsfaktoren: IPCC AR5 (2014), über Electricity Maps.
 Code unter der Apache-2.0-Lizenz. Nicht mit NYISO verbunden.
+
+EIA-Netze: U.S. Energy Information Administration, Formular EIA-930,
+gemeinfrei. Nicht mit der EIA verbunden.

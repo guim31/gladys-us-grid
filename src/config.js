@@ -7,6 +7,7 @@
 // `undefined` or with a value typed by hand with stray spaces.
 // -----------------------------------------------------------------------------
 
+import { EIA_REGIONS } from './eia-regions.js';
 import { ZONES } from './zones.js';
 
 /** The languages of the Gladys interface, every text exists in all four. */
@@ -26,6 +27,10 @@ export const DEFAULT_CONFIG = {
   price_high: null,
   price_low: null,
   low_carbon_high: null,
+  // The EIA: a free key, and the grids followed (respondent codes), one device
+  // each. Without a key, NYISO alone. No default in the manifest.
+  eia_api_key: '',
+  eia_regions: [],
 };
 
 /**
@@ -41,6 +46,8 @@ export function normalizeConfig(raw = {}) {
     price_high: toNumber(raw.price_high),
     price_low: toNumber(raw.price_low),
     low_carbon_high: share === null ? null : Math.min(100, Math.max(0, share)),
+    eia_api_key: String(raw.eia_api_key ?? '').trim(),
+    eia_regions: normalizeList(raw.eia_regions, EIA_REGIONS),
   };
 }
 
@@ -60,7 +67,12 @@ export function toNumber(raw) {
  * @returns {string[]}
  */
 function normalizeZones(raw) {
+  return normalizeList(raw, ZONES);
+}
+
+/** A multi_select (or a comma-separated string) → the known ids, sorted, once each. */
+function normalizeList(raw, known) {
   const list = Array.isArray(raw) ? raw : typeof raw === 'string' ? raw.split(',') : [];
-  const ids = list.map((id) => String(id).trim()).filter((id) => ZONES[id]);
+  const ids = list.map((id) => String(id).trim()).filter((id) => Object.hasOwn(known, id));
   return [...new Set(ids)].sort();
 }
